@@ -33,7 +33,7 @@ position = Vector2(2, 120)
 shape = SubResource("RectangleShape2D_appvt")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1198, 120)
+position = Vector2(1202, 120)
 shape = SubResource("RectangleShape2D_appvt")
 
 [node name="Player" parent="." instance=ExtResource("1_h2swh")]

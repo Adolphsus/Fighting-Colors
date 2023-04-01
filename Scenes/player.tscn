@@ -89,5 +89,5 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_b6vc7")
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
 limit_top = 0
-limit_right = 1190
+limit_right = 1200
 limit_bottom = 240

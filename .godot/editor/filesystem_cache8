@@ -1,5 +1,5 @@
 2a60927148abd1d33b818b535e306557
-::res://::1680385016
+::res://::1680386678
 icon.svg::CompressedTexture2D::131298376505048607::1680383731::1680383731::1::::<><>::
 player.gd::GDScript::-1::1680383731::0::1::::<>Node<>::
 ::res://assets/::1680383730
@@ -115,6 +115,6 @@ ethereum-2.png::CompressedTexture2D::467041210613858306::1680383731::1680383731:
 ::res://assets/Streets of Fight files/Stage Layers/props/Sushi/::1680383731
 sushi-1.png::CompressedTexture2D::6607057449074085501::1680383731::1680383731::1::::<><>::
 sushi-2.png::CompressedTexture2D::8098448630698536517::1680383731::1680383731::1::::<><>::
-::res://Scenes/::1680384749
-main.tscn::PackedScene::2176869774491397183::1680384749::0::1::::<><>::uid://bktn544wckokf
-player.tscn::PackedScene::3128376761102815361::1680384742::0::1::::<><>::uid://bq37uu8ecka0c
+::res://Scenes/::1680386661
+main.tscn::PackedScene::4004201931796622742::1680386661::0::1::::<><>::uid://bktn544wckokf<>uid://pjexhhu8c0jx
+player.tscn::PackedScene::3128376761102815361::1680386626::0::1::::<><>::uid://bq37uu8ecka0c
