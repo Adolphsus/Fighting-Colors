@@ -4,15 +4,26 @@
 
 [sub_resource type="GDScript" id="GDScript_52qv2"]
 script/source = "extends CharacterBody2D
+var speed_x = 100
+var speed_y = 50
 
-@export var speed = 400
+func get_H():
+	var input_direction_H = Input.get_axis(\"left\", \"right\")
+	if input_direction_H:
+		velocity.x = input_direction_H * speed_x
+	else:
+		velocity.x = 0
 
-func get_input():
-	var input_direction = Input.get_vector(\"left\", \"right\", \"up\", \"down\")
-	velocity = input_direction * speed
+func get_V():
+	var input_direction_V = Input.get_axis(\"up\", \"down\")
+	if input_direction_V:
+		velocity.y = input_direction_V * speed_y
+	else:
+		velocity.y = 0
 
 func _physics_process(delta):
-	get_input()
+	get_H()
+	get_V()
 	move_and_slide()
 "
 
@@ -87,6 +98,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_b6vc7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.7, 0.7)
 limit_left = 0
 limit_top = 0
 limit_right = 1200
