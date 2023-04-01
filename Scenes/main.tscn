@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxbwvdv0lih6m"]
+
+[ext_resource type="PackedScene" uid="uid://bktn544wckokf" path="res://Scenes/player.tscn" id="1_h2swh"]
+[ext_resource type="Texture2D" uid="uid://pjexhhu8c0jx" path="res://assets/Streets of Fight files/Previews/Stage/preview_stage.png" id="1_w3m37"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_privw"]
+size = Vector2(1200, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_appvt"]
+size = Vector2(4, 240)
+
+[node name="main" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(600, 120)
+texture = ExtResource("1_w3m37")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(600, 239)
+shape = SubResource("RectangleShape2D_privw")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(600, 49)
+shape = SubResource("RectangleShape2D_privw")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2, 120)
+shape = SubResource("RectangleShape2D_appvt")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1198, 120)
+shape = SubResource("RectangleShape2D_appvt")
+
+[node name="Player" parent="." instance=ExtResource("1_h2swh")]
+position = Vector2(127, 72)

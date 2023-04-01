@@ -1,118 +1,120 @@
 2a60927148abd1d33b818b535e306557
-::res://::1680382486
-icon.svg::CompressedTexture2D::131298376505048607::1680301702::1680301721::1::::<><>::
-main.tscn::PackedScene::2176869774491397183::1680382451::0::1::::<><>::uid://d1mxwowv8mle6<>uid://bq37uu8ecka0c
-player.gd::GDScript::-1::1680377534::0::1::::<>Node<>::
-::res://assets/::1680376421
-::res://assets/Streets of Fight files/::1680376421
-public-license.txt::TextFile::-1::1680376421::0::1::::<><>::
-::res://assets/Streets of Fight files/Aseprite/::1680376421
-::res://assets/Streets of Fight files/Previews/::1680376421
-::res://assets/Streets of Fight files/Previews/Brawler Girl/::1680376421
-::res://assets/Streets of Fight files/Previews/Enemy Punk/::1680376421
-::res://assets/Streets of Fight files/Previews/Stage/::1680376421
-preview_stage.png::CompressedTexture2D::1071696375017899533::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/::1680376421
-shadow.png::CompressedTexture2D::4421370499018479971::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Brawler-Girl/::1680376421
-::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Dive_kick/::1680376421
-dive_kick1.png::CompressedTexture2D::1826558781843304494::1680376421::1680376421::1::::<><>::
-dive_kick2.png::CompressedTexture2D::1336783455750353507::1680376421::1680376421::1::::<><>::
-dive_kick3.png::CompressedTexture2D::885116695842331315::1680376421::1680376421::1::::<><>::
-dive_kick4.png::CompressedTexture2D::2071234558634120733::1680376421::1680376421::1::::<><>::
-dive_kick5.png::CompressedTexture2D::1916468601253510131::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Hurt/::1680376421
-hurt1.png::CompressedTexture2D::5010606482148227326::1680376421::1680376421::1::::<><>::
-hurt2.png::CompressedTexture2D::2334831805147730248::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Idle/::1680376421
-idle1.png::CompressedTexture2D::362858365332126738::1680376421::1680376421::1::::<><>::
-idle2.png::CompressedTexture2D::5006435793587579364::1680376421::1680376421::1::::<><>::
-idle3.png::CompressedTexture2D::1264015246382907452::1680376421::1680376421::1::::<><>::
-idle4.png::CompressedTexture2D::1469586262291263965::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Jab/::1680376421
-jab1.png::CompressedTexture2D::5508128557261406392::1680376421::1680376421::1::::<><>::
-jab2.png::CompressedTexture2D::4925499461307221204::1680376421::1680376421::1::::<><>::
-jab3.png::CompressedTexture2D::8896350289577758787::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Jump/::1680376421
-jump1.png::CompressedTexture2D::1165356455684866491::1680376421::1680376421::1::::<><>::
-jump2.png::CompressedTexture2D::3063566811847225203::1680376421::1680376421::1::::<><>::
-jump3.png::CompressedTexture2D::1491612631347989337::1680376421::1680376421::1::::<><>::
-jump4.png::CompressedTexture2D::2093561849663146358::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Jump_kick/::1680376421
-jump_kick1.png::CompressedTexture2D::1023923522516899657::1680376421::1680376421::1::::<><>::
-jump_kick2.png::CompressedTexture2D::3301048808274202136::1680376421::1680376421::1::::<><>::
-jump_kick3.png::CompressedTexture2D::4835322253004230070::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Kick/::1680376421
-kick1.png::CompressedTexture2D::1351443097133824965::1680376421::1680376421::1::::<><>::
-kick2.png::CompressedTexture2D::8656218568946415120::1680376421::1680376421::1::::<><>::
-kick3.png::CompressedTexture2D::8287594628021392957::1680376421::1680376421::1::::<><>::
-kick4.png::CompressedTexture2D::4334802416615560317::1680376421::1680376421::1::::<><>::
-kick5.png::CompressedTexture2D::301692202970134202::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Punch/::1680376421
-punch1.png::CompressedTexture2D::6833387879238436101::1680376421::1680376421::1::::<><>::
-punch2.png::CompressedTexture2D::5499850948072298739::1680376421::1680376421::1::::<><>::
-punch3.png::CompressedTexture2D::4747402839582496791::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Walk/::1680376421
-walk1.png::CompressedTexture2D::2925946786702086294::1680376421::1680376421::1::::<><>::
-walk2.png::CompressedTexture2D::6808919089702092952::1680376421::1680376421::1::::<><>::
-walk3.png::CompressedTexture2D::7416395983833275461::1680376421::1680376421::1::::<><>::
-walk4.png::CompressedTexture2D::7047483672352898422::1680376421::1680376421::1::::<><>::
-walk5.png::CompressedTexture2D::559605444201364551::1680376421::1680376421::1::::<><>::
-walk6.png::CompressedTexture2D::3690547144949643473::1680376421::1680376421::1::::<><>::
-walk7.png::CompressedTexture2D::701224505596958122::1680376421::1680376421::1::::<><>::
-walk8.png::CompressedTexture2D::6341081641231386220::1680376421::1680376421::1::::<><>::
-walk9.png::CompressedTexture2D::325296351374243235::1680376421::1680376421::1::::<><>::
-walk10.png::CompressedTexture2D::6444699374591518894::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Enemy-Punk/::1680376421
-::res://assets/Streets of Fight files/Sprites/Enemy-Punk/Hurt/::1680376421
-hurt1.png::CompressedTexture2D::8569035131650199403::1680376421::1680376421::1::::<><>::
-hurt2.png::CompressedTexture2D::1104547939124987088::1680376421::1680376421::1::::<><>::
-hurt3.png::CompressedTexture2D::144292724414126062::1680376421::1680376421::1::::<><>::
-hurt4.png::CompressedTexture2D::1322654710851928820::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Enemy-Punk/Idle/::1680376421
-idle1.png::CompressedTexture2D::5991721722488847699::1680376421::1680376421::1::::<><>::
-idle2.png::CompressedTexture2D::799782575048484031::1680376421::1680376421::1::::<><>::
-idle3.png::CompressedTexture2D::5026946917119672313::1680376421::1680376421::1::::<><>::
-idle4.png::CompressedTexture2D::5597465805979886714::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Enemy-Punk/Punch/::1680376421
-punch1.png::CompressedTexture2D::7037230942146632625::1680376421::1680376421::1::::<><>::
-punch2.png::CompressedTexture2D::8173136912737189816::1680376421::1680376421::1::::<><>::
-punch3.png::CompressedTexture2D::8227889282333099483::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Sprites/Enemy-Punk/Walk/::1680376421
-walk1.png::CompressedTexture2D::3693614907256601017::1680376421::1680376421::1::::<><>::
-walk2.png::CompressedTexture2D::4331300541676472878::1680376421::1680376421::1::::<><>::
-walk3.png::CompressedTexture2D::4966303242440695984::1680376421::1680376421::1::::<><>::
-walk4.png::CompressedTexture2D::3699484676045605998::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Spritesheets/::1680376421
-::res://assets/Streets of Fight files/Spritesheets/Brawler Girl/::1680376421
-dive_kick.png::CompressedTexture2D::5165751014855900048::1680376421::1680376421::1::::<><>::
-hurt.png::CompressedTexture2D::8376834893495154509::1680376421::1680376421::1::::<><>::
-idle.png::CompressedTexture2D::3569224520292274564::1680376421::1680376421::1::::<><>::
-jab.png::CompressedTexture2D::7738052847500665859::1680376421::1680376421::1::::<><>::
-jump.png::CompressedTexture2D::4071392630681289100::1680376421::1680376421::1::::<><>::
-jump_kick.png::CompressedTexture2D::2410174541422365843::1680376421::1680376421::1::::<><>::
-kick.png::CompressedTexture2D::4854013948293926844::1680376421::1680376421::1::::<><>::
-punch.png::CompressedTexture2D::8088393984132287891::1680376421::1680376421::1::::<><>::
-walk.png::CompressedTexture2D::6574296123400064146::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Spritesheets/Enemy Punk/::1680376421
-hurt.png::CompressedTexture2D::513187142042877114::1680376421::1680376421::1::::<><>::
-idle.png::CompressedTexture2D::4922908639794759862::1680376421::1680376421::1::::<><>::
-punch.png::CompressedTexture2D::2988740416836894858::1680376421::1680376421::1::::<><>::
-walk.png::CompressedTexture2D::8187736187451141013::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Stage Layers/::1680376421
-back.png::CompressedTexture2D::9010381067327725539::1680376421::1680376421::1::::<><>::
-fore.png::CompressedTexture2D::1306842514195777551::1680376421::1680376421::1::::<><>::
-tileset.png::CompressedTexture2D::6218040304464950047::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Stage Layers/props/::1680376421
-barrel.png::CompressedTexture2D::6742147590056230767::1680376421::1680376421::1::::<><>::
-car.png::CompressedTexture2D::1378303644923023773::1680376421::1680376421::1::::<><>::
-hydrant.png::CompressedTexture2D::7255203111143277561::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Stage Layers/props/banner-hor/::1680376421
-banner-hor1.png::CompressedTexture2D::7925239789533967932::1680376421::1680376421::1::::<><>::
-banner-hor2.png::CompressedTexture2D::3828257181095655837::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Stage Layers/props/Ethereum/::1680376421
-ethereum-1.png::CompressedTexture2D::668393923923203309::1680376421::1680376421::1::::<><>::
-ethereum-2.png::CompressedTexture2D::467041210613858306::1680376421::1680376421::1::::<><>::
-::res://assets/Streets of Fight files/Stage Layers/props/Sushi/::1680376421
-sushi-1.png::CompressedTexture2D::6607057449074085501::1680376421::1680376421::1::::<><>::
-sushi-2.png::CompressedTexture2D::8098448630698536517::1680376421::1680376421::1::::<><>::
+::res://::1680385016
+icon.svg::CompressedTexture2D::131298376505048607::1680383731::1680383731::1::::<><>::
+player.gd::GDScript::-1::1680383731::0::1::::<>Node<>::
+::res://assets/::1680383730
+::res://assets/Streets of Fight files/::1680383731
+public-license.txt::TextFile::-1::1680383731::0::1::::<><>::
+::res://assets/Streets of Fight files/Aseprite/::1680383730
+::res://assets/Streets of Fight files/Previews/::1680383730
+::res://assets/Streets of Fight files/Previews/Brawler Girl/::1680383730
+::res://assets/Streets of Fight files/Previews/Enemy Punk/::1680383730
+::res://assets/Streets of Fight files/Previews/Stage/::1680383730
+preview_stage.png::CompressedTexture2D::1071696375017899533::1680383730::1680383730::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/::1680383731
+shadow.png::CompressedTexture2D::4421370499018479971::1680383731::1680383731::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Brawler-Girl/::1680383730
+::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Dive_kick/::1680383730
+dive_kick1.png::CompressedTexture2D::1826558781843304494::1680383730::1680383730::1::::<><>::
+dive_kick2.png::CompressedTexture2D::1336783455750353507::1680383730::1680383730::1::::<><>::
+dive_kick3.png::CompressedTexture2D::885116695842331315::1680383730::1680383730::1::::<><>::
+dive_kick4.png::CompressedTexture2D::2071234558634120733::1680383730::1680383730::1::::<><>::
+dive_kick5.png::CompressedTexture2D::1916468601253510131::1680383730::1680383730::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Hurt/::1680383730
+hurt1.png::CompressedTexture2D::5010606482148227326::1680383730::1680383730::1::::<><>::
+hurt2.png::CompressedTexture2D::2334831805147730248::1680383730::1680383730::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Idle/::1680383730
+idle1.png::CompressedTexture2D::362858365332126738::1680383730::1680383730::1::::<><>::
+idle2.png::CompressedTexture2D::5006435793587579364::1680383730::1680383730::1::::<><>::
+idle3.png::CompressedTexture2D::1264015246382907452::1680383730::1680383730::1::::<><>::
+idle4.png::CompressedTexture2D::1469586262291263965::1680383730::1680383730::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Jab/::1680383730
+jab1.png::CompressedTexture2D::5508128557261406392::1680383730::1680383730::1::::<><>::
+jab2.png::CompressedTexture2D::4925499461307221204::1680383730::1680383730::1::::<><>::
+jab3.png::CompressedTexture2D::8896350289577758787::1680383730::1680383730::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Jump/::1680383730
+jump1.png::CompressedTexture2D::1165356455684866491::1680383730::1680383730::1::::<><>::
+jump2.png::CompressedTexture2D::3063566811847225203::1680383730::1680383730::1::::<><>::
+jump3.png::CompressedTexture2D::1491612631347989337::1680383730::1680383730::1::::<><>::
+jump4.png::CompressedTexture2D::2093561849663146358::1680383730::1680383730::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Jump_kick/::1680383730
+jump_kick1.png::CompressedTexture2D::1023923522516899657::1680383730::1680383730::1::::<><>::
+jump_kick2.png::CompressedTexture2D::3301048808274202136::1680383730::1680383730::1::::<><>::
+jump_kick3.png::CompressedTexture2D::4835322253004230070::1680383730::1680383730::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Kick/::1680383730
+kick1.png::CompressedTexture2D::1351443097133824965::1680383730::1680383730::1::::<><>::
+kick2.png::CompressedTexture2D::8656218568946415120::1680383730::1680383730::1::::<><>::
+kick3.png::CompressedTexture2D::8287594628021392957::1680383730::1680383730::1::::<><>::
+kick4.png::CompressedTexture2D::4334802416615560317::1680383730::1680383730::1::::<><>::
+kick5.png::CompressedTexture2D::301692202970134202::1680383730::1680383730::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Punch/::1680383730
+punch1.png::CompressedTexture2D::6833387879238436101::1680383730::1680383730::1::::<><>::
+punch2.png::CompressedTexture2D::5499850948072298739::1680383730::1680383730::1::::<><>::
+punch3.png::CompressedTexture2D::4747402839582496791::1680383730::1680383730::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Brawler-Girl/Walk/::1680383730
+walk1.png::CompressedTexture2D::2925946786702086294::1680383730::1680383730::1::::<><>::
+walk2.png::CompressedTexture2D::6808919089702092952::1680383730::1680383730::1::::<><>::
+walk3.png::CompressedTexture2D::7416395983833275461::1680383730::1680383730::1::::<><>::
+walk4.png::CompressedTexture2D::7047483672352898422::1680383730::1680383730::1::::<><>::
+walk5.png::CompressedTexture2D::559605444201364551::1680383730::1680383730::1::::<><>::
+walk6.png::CompressedTexture2D::3690547144949643473::1680383730::1680383730::1::::<><>::
+walk7.png::CompressedTexture2D::701224505596958122::1680383730::1680383730::1::::<><>::
+walk8.png::CompressedTexture2D::6341081641231386220::1680383730::1680383730::1::::<><>::
+walk9.png::CompressedTexture2D::325296351374243235::1680383730::1680383730::1::::<><>::
+walk10.png::CompressedTexture2D::6444699374591518894::1680383730::1680383730::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Enemy-Punk/::1680383731
+::res://assets/Streets of Fight files/Sprites/Enemy-Punk/Hurt/::1680383730
+hurt1.png::CompressedTexture2D::8569035131650199403::1680383730::1680383730::1::::<><>::
+hurt2.png::CompressedTexture2D::1104547939124987088::1680383730::1680383730::1::::<><>::
+hurt3.png::CompressedTexture2D::144292724414126062::1680383730::1680383730::1::::<><>::
+hurt4.png::CompressedTexture2D::1322654710851928820::1680383730::1680383730::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Enemy-Punk/Idle/::1680383730
+idle1.png::CompressedTexture2D::5991721722488847699::1680383730::1680383730::1::::<><>::
+idle2.png::CompressedTexture2D::799782575048484031::1680383730::1680383730::1::::<><>::
+idle3.png::CompressedTexture2D::5026946917119672313::1680383730::1680383730::1::::<><>::
+idle4.png::CompressedTexture2D::5597465805979886714::1680383730::1680383730::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Enemy-Punk/Punch/::1680383731
+punch1.png::CompressedTexture2D::7037230942146632625::1680383730::1680383730::1::::<><>::
+punch2.png::CompressedTexture2D::8173136912737189816::1680383730::1680383730::1::::<><>::
+punch3.png::CompressedTexture2D::8227889282333099483::1680383730::1680383731::1::::<><>::
+::res://assets/Streets of Fight files/Sprites/Enemy-Punk/Walk/::1680383731
+walk1.png::CompressedTexture2D::3693614907256601017::1680383731::1680383731::1::::<><>::
+walk2.png::CompressedTexture2D::4331300541676472878::1680383731::1680383731::1::::<><>::
+walk3.png::CompressedTexture2D::4966303242440695984::1680383731::1680383731::1::::<><>::
+walk4.png::CompressedTexture2D::3699484676045605998::1680383731::1680383731::1::::<><>::
+::res://assets/Streets of Fight files/Spritesheets/::1680383731
+::res://assets/Streets of Fight files/Spritesheets/Brawler Girl/::1680383731
+dive_kick.png::CompressedTexture2D::5165751014855900048::1680383731::1680383731::1::::<><>::
+hurt.png::CompressedTexture2D::8376834893495154509::1680383731::1680383731::1::::<><>::
+idle.png::CompressedTexture2D::3569224520292274564::1680383731::1680383731::1::::<><>::
+jab.png::CompressedTexture2D::7738052847500665859::1680383731::1680383731::1::::<><>::
+jump.png::CompressedTexture2D::4071392630681289100::1680383731::1680383731::1::::<><>::
+jump_kick.png::CompressedTexture2D::2410174541422365843::1680383731::1680383731::1::::<><>::
+kick.png::CompressedTexture2D::4854013948293926844::1680383731::1680383731::1::::<><>::
+punch.png::CompressedTexture2D::8088393984132287891::1680383731::1680383731::1::::<><>::
+walk.png::CompressedTexture2D::6574296123400064146::1680383731::1680383731::1::::<><>::
+::res://assets/Streets of Fight files/Spritesheets/Enemy Punk/::1680383731
+hurt.png::CompressedTexture2D::513187142042877114::1680383731::1680383731::1::::<><>::
+idle.png::CompressedTexture2D::4922908639794759862::1680383731::1680383731::1::::<><>::
+punch.png::CompressedTexture2D::2988740416836894858::1680383731::1680383731::1::::<><>::
+walk.png::CompressedTexture2D::8187736187451141013::1680383731::1680383731::1::::<><>::
+::res://assets/Streets of Fight files/Stage Layers/::1680383731
+back.png::CompressedTexture2D::9010381067327725539::1680383731::1680383731::1::::<><>::
+fore.png::CompressedTexture2D::1306842514195777551::1680383731::1680383731::1::::<><>::
+tileset.png::CompressedTexture2D::6218040304464950047::1680383731::1680383731::1::::<><>::
+::res://assets/Streets of Fight files/Stage Layers/props/::1680383731
+barrel.png::CompressedTexture2D::6742147590056230767::1680383731::1680383731::1::::<><>::
+car.png::CompressedTexture2D::1378303644923023773::1680383731::1680383731::1::::<><>::
+hydrant.png::CompressedTexture2D::7255203111143277561::1680383731::1680383731::1::::<><>::
+::res://assets/Streets of Fight files/Stage Layers/props/banner-hor/::1680383731
+banner-hor1.png::CompressedTexture2D::7925239789533967932::1680383731::1680383731::1::::<><>::
+banner-hor2.png::CompressedTexture2D::3828257181095655837::1680383731::1680383731::1::::<><>::
+::res://assets/Streets of Fight files/Stage Layers/props/Ethereum/::1680383731
+ethereum-1.png::CompressedTexture2D::668393923923203309::1680383731::1680383731::1::::<><>::
+ethereum-2.png::CompressedTexture2D::467041210613858306::1680383731::1680383731::1::::<><>::
+::res://assets/Streets of Fight files/Stage Layers/props/Sushi/::1680383731
+sushi-1.png::CompressedTexture2D::6607057449074085501::1680383731::1680383731::1::::<><>::
+sushi-2.png::CompressedTexture2D::8098448630698536517::1680383731::1680383731::1::::<><>::
+::res://Scenes/::1680384749
+main.tscn::PackedScene::2176869774491397183::1680384749::0::1::::<><>::uid://bktn544wckokf
+player.tscn::PackedScene::3128376761102815361::1680384742::0::1::::<><>::uid://bq37uu8ecka0c
