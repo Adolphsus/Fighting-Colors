@@ -1,5 +1,8 @@
 Sprite2D
+AnimationTree
+AnimationPlayer
 CollisionShape2D
+CharacterBody2D
 StaticBody2D
 Node2D
 Node
