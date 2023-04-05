@@ -645,7 +645,6 @@ graph_offset = Vector2(0, -17.352)
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = SubResource("GDScript_52qv2")
-metadata/_edit_group_ = true
 
 [node name="Pivot" type="Node2D" parent="."]
 
