@@ -7,6 +7,7 @@ script/source = "extends CharacterBody2D
 var speed_x = 70
 var speed_y = 40
 
+## Player script
 
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
