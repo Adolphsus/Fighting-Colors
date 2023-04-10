@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bktn544wckokf"]
+[gd_scene load_steps=26 format=3 uid="uid://bktn544wckokf"]
 
 [ext_resource type="Texture2D" uid="uid://bklj6p80cnjj8" path="res://assets/Streets of Fight files/Spritesheets/Brawler Girl/all movement.png" id="1_3qgph"]
 
@@ -26,58 +26,32 @@ func get_V():
 		velocity.y = input_direction_V * speed_y
 	else:
 		velocity.y = 0
-func attacks():
+func punch():
 	var input_punch = Input.is_action_pressed(\"punch\")
-	var input_kick = Input.is_action_pressed(\"kick\")
 	if input_punch:
-		playback.travel(\"punch\")
-	elif input_kick:
-		playback.travel(\"kick\")
-	else:
-		if velocity.x == 0 and velocity.y == 0:
-			playback.travel(\"idle\")
-		else:
-			playback.travel(\"walk\")
-			
-func jump():
-	var input_jump= Input.is_action_just_pressed(\"jump\")
-	if input_jump:
-		playback.travel(\"jump\")
-	else:
-		if velocity.x == 0 and velocity.y == 0:
-			playback.travel(\"idle\")
-		else:
-			playback.travel(\"walk\")
+		animation_player.play(\"punch\")
 		
 func animationplayer():
-	var input_jump= Input.is_action_just_pressed(\"jump\")
+	if Input.is_action_just_pressed(\"punch\"):
+		animation_player.play(\"punch\")
 	if velocity.x == 0 and velocity.y == 0:
-		playback.travel(\"idle\")
+		animation_player.play(\"idle\")
 	elif velocity.x != 0:
 		if velocity.x > 0:
-			playback.travel(\"walk\")
+			animation_player.play(\"walk\")
 			pivot.scale.x = 1
 		if velocity.x < 0:
-			playback.travel(\"walk\")
+			animation_player.play(\"walk\")
 			pivot.scale.x = -1
 	elif velocity.y != 0:
-		playback.travel(\"walk\")
-	if input_jump:
-		playback.travel(\"jump\")
-	else:
-		if velocity.x == 0 and velocity.y == 0:
-			playback.travel(\"idle\")
-		else:
-			playback.travel(\"walk\")
-		
+		animation_player.play(\"walk\")
 
 func _physics_process(delta):
 	get_H()
 	get_V()
+	punch()
 	animationplayer()
 	move_and_slide()
-	attacks()
-	
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8gct2"]
@@ -309,11 +283,11 @@ tracks/1/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fkuaj"]
-height = 35.0562
+height = 46.2097
 
 [sub_resource type="Animation" id="Animation_i18m7"]
 resource_name = "kick"
-length = 0.44
+length = 0.46
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -562,89 +536,62 @@ _data = {
 "RESET": SubResource("Animation_8ra1g"),
 "hurt": SubResource("Animation_h1pny"),
 "idle": SubResource("Animation_ckfdv"),
-"jump": SubResource("Animation_uic1w"),
 "kick": SubResource("Animation_i18m7"),
 "punch": SubResource("Animation_7vg3e"),
 "walk": SubResource("Animation_ju7fh")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ry5p"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pvgff"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_46pxs"]
-animation = &"jump"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3bq82"]
-animation = &"kick"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o23f3"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1xlj7"]
 animation = &"punch"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8aie0"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8rc78"]
 animation = &"walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ky8u2"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g0ofw"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1pexj"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hl3q4"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l2c28"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o13jb"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tbwvo"]
 switch_mode = 2
+advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ddnkm"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3waad"]
 switch_mode = 2
+advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uk5b0"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ul6u7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xbjtb"]
 switch_mode = 2
+advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hwmba"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ucmo6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jkh1b"]
 switch_mode = 2
+advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a4e1p"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jitfc"]
+states/idle/node = SubResource("AnimationNodeAnimation_pvgff")
+states/idle/position = Vector2(403, 100)
+states/punch/node = SubResource("AnimationNodeAnimation_1xlj7")
+states/punch/position = Vector2(518.531, -17)
+states/walk/node = SubResource("AnimationNodeAnimation_8rc78")
+states/walk/position = Vector2(635, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_g0ofw"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_tbwvo"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_3waad"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_ul6u7"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_xbjtb"), "walk", "punch", SubResource("AnimationNodeStateMachineTransition_ucmo6"), "punch", "walk", SubResource("AnimationNodeStateMachineTransition_jkh1b")]
+graph_offset = Vector2(-79.4686, -51.4971)
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m3u7e"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oj2ua"]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5tvm6"]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pgkut"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gter8"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_du6rn"]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tv2oy"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qoeeu"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rlvtv"]
-states/Start/position = Vector2(204, 100)
-states/idle/node = SubResource("AnimationNodeAnimation_6ry5p")
-states/idle/position = Vector2(416, 100)
-states/jump/node = SubResource("AnimationNodeAnimation_46pxs")
-states/jump/position = Vector2(537, 215.596)
-states/kick/node = SubResource("AnimationNodeAnimation_3bq82")
-states/kick/position = Vector2(773, -57.4035)
-states/punch/node = SubResource("AnimationNodeAnimation_o23f3")
-states/punch/position = Vector2(331, -57.4035)
-states/walk/node = SubResource("AnimationNodeAnimation_8aie0")
-states/walk/position = Vector2(671, 100)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ky8u2"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_1pexj"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_hl3q4"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_l2c28"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_o13jb"), "punch", "kick", SubResource("AnimationNodeStateMachineTransition_ddnkm"), "kick", "punch", SubResource("AnimationNodeStateMachineTransition_uk5b0"), "kick", "walk", SubResource("AnimationNodeStateMachineTransition_hwmba"), "walk", "kick", SubResource("AnimationNodeStateMachineTransition_a4e1p"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_m3u7e"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_oj2ua"), "punch", "walk", SubResource("AnimationNodeStateMachineTransition_5tvm6"), "walk", "punch", SubResource("AnimationNodeStateMachineTransition_pgkut"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_gter8"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_du6rn"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_tv2oy"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_qoeeu")]
-graph_offset = Vector2(0, -17.352)
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_313eo"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_b6vc7"]
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = SubResource("GDScript_52qv2")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Pivot" type="Node2D" parent="."]
 
@@ -659,17 +606,24 @@ frame = 32
 position = Vector2(-2, 0)
 skew = 0.246091
 shape = SubResource("CapsuleShape2D_8gct2")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(26.5, -10)
 rotation = -0.282743
 shape = SubResource("RectangleShape2D_epgvt")
 disabled = true
+metadata/_edit_group_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_18d18")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_jitfc")
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_b6vc7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.7, 0.7)
@@ -677,9 +631,3 @@ limit_left = 0
 limit_top = 0
 limit_right = 1200
 limit_bottom = 240
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_rlvtv")
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_313eo")
