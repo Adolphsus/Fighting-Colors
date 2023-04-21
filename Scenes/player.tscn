@@ -7,6 +7,7 @@ script/source = "extends CharacterBody2D
 var speed_x = 70
 var speed_y = 40
 
+## Player script
 
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
@@ -82,6 +83,7 @@ func animationplayer():
 func _physics_process(delta):
 	get_H()
 	get_V()
+	punch()
 	animationplayer()
 	move_and_slide()
 	attack()
@@ -669,7 +671,6 @@ _data = {
 "RESET": SubResource("Animation_8ra1g"),
 "hurt": SubResource("Animation_h1pny"),
 "idle": SubResource("Animation_ckfdv"),
-"jump": SubResource("Animation_uic1w"),
 "kick": SubResource("Animation_i18m7"),
 "punch": SubResource("Animation_7vg3e"),
 "walk": SubResource("Animation_ju7fh")
@@ -708,6 +709,12 @@ metadata/_edit_lock_ = true
 libraries = {
 "": SubResource("AnimationLibrary_18d18")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_jitfc")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_b6vc7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.7, 0.7)
