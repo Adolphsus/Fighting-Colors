@@ -1,11 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://bktn544wckokf"]
+[gd_scene load_steps=31 format=3 uid="uid://bktn544wckokf"]
 
 [ext_resource type="Texture2D" uid="uid://bklj6p80cnjj8" path="res://assets/Streets of Fight files/Spritesheets/Brawler Girl/all movement.png" id="1_3qgph"]
 
 [sub_resource type="GDScript" id="GDScript_52qv2"]
 script/source = "extends CharacterBody2D
+class_name Player
 var speed_x = 70
 var speed_y = 40
+@export var can_move = true
 
 ## Player script
 
@@ -13,6 +15,10 @@ var speed_y = 40
 @onready var animation_player = $AnimationPlayer
 @onready var pivot = $Pivot
 @onready var playback = animation_tree.get(\"parameters/playback\")
+
+func _ready():
+	animation_tree.animation_finished.connect(reset_movement)
+
 
 func get_H():
 	var input_direction_H = Input.get_axis(\"left\", \"right\")
@@ -30,12 +36,20 @@ func get_V():
 		playback.travel(\"walk\")
 	else:
 		velocity.y = 0
+		
+func reset_movement(anim_name): #agregar a lista de \"ifs\" si queremos agregar otra animacion igual
+#	print(anim_name)
+	if anim_name == \"punch\" or anim_name == \"kick\":
+		can_move = true
 
 func attacks():
-	if Input.is_action_pressed(\"punch\"):
+	if Input.is_action_just_pressed(\"punch\"):
+		set_deferred(\"can_move\", false)
 		playback.call_deferred(\"travel\", \"punch\")
-	elif Input.is_action_pressed(\"kick\"):
+	elif Input.is_action_just_pressed(\"kick\"):
+		set_deferred(\"can_move\", false)
 		playback.call_deferred(\"travel\", \"kick\")
+		
 
 
 
@@ -43,8 +57,11 @@ func attacks():
 
 func _physics_process(delta):
 	attacks()
-	get_H()
-	get_V()
+	if can_move:
+		get_H()
+		get_V()
+	else:
+		velocity = Vector2.ZERO
 	if velocity.x == 0 and velocity.y == 0:
 		playback.travel(\"idle\")
 
@@ -271,7 +288,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_i18m7"]
 resource_name = "kick"
 length = 0.44
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -312,7 +328,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_7vg3e"]
 resource_name = "punch"
 length = 0.47
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -508,6 +523,18 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f4a53"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_thrcc"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0jsvv"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ua5i7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_higfs"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8lxx5"]
 states/idle/node = SubResource("AnimationNodeAnimation_rpbee")
 states/idle/position = Vector2(433, 100)
@@ -517,8 +544,8 @@ states/punch/node = SubResource("AnimationNodeAnimation_5igbn")
 states/punch/position = Vector2(433, -14.2456)
 states/walk/node = SubResource("AnimationNodeAnimation_1jk7f")
 states/walk/position = Vector2(662, 100)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ni8ju"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_exs1x"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_8sbdm"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_fm1el"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_1cltm"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_q1jce"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_f4a53")]
-graph_offset = Vector2(0, -42.2456)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ni8ju"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_exs1x"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_8sbdm"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_fm1el"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_1cltm"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_q1jce"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_f4a53"), "punch", "walk", SubResource("AnimationNodeStateMachineTransition_thrcc"), "kick", "walk", SubResource("AnimationNodeStateMachineTransition_0jsvv"), "walk", "punch", SubResource("AnimationNodeStateMachineTransition_ua5i7"), "walk", "kick", SubResource("AnimationNodeStateMachineTransition_higfs")]
+graph_offset = Vector2(-76, -54.2456)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_lrwkw"]
 
@@ -547,6 +574,7 @@ position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_pd8tb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
 libraries = {
 "": SubResource("AnimationLibrary_18d18")
 }
