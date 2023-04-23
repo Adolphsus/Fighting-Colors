@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bq7c0qybdo4x6"]
+
+[ext_resource type="FontFile" uid="uid://byuwci0navmad" path="res://assets/Fonts/ThaleahFat.ttf" id="1_moysw"]
+
+[resource]
+default_font = ExtResource("1_moysw")
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 0
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 0

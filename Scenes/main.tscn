@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cuuchk7auby44" path="res://assets/Streets of Fight files/Stage Layers/tileset.png" id="2_gcgbv"]
 [ext_resource type="Texture2D" uid="uid://jr1l56fakcbt" path="res://assets/Streets of Fight files/Stage Layers/props/Ethereum/ethereum-1.png" id="4_0t7m8"]
 [ext_resource type="Texture2D" uid="uid://c1erjhe12oglp" path="res://assets/Streets of Fight files/Stage Layers/props/Sushi/sushi-1.png" id="5_qjwj0"]
-[ext_resource type="Script" path="res://Scenes/player.gd" id="6_e8ovm"]
+[ext_resource type="PackedScene" uid="uid://d2r8vd0iljo6g" path="res://player_2.tscn" id="6_3i2qu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gheo4"]
 texture = ExtResource("2_gcgbv")
@@ -1612,6 +1612,4 @@ format = 2
 [node name="Player" parent="." instance=ExtResource("1_h2swh")]
 position = Vector2(183, 103)
 
-[node name="Player2" parent="." instance=ExtResource("1_h2swh")]
-position = Vector2(177, 160)
-script = ExtResource("6_e8ovm")
+[node name="Player2" parent="." instance=ExtResource("6_3i2qu")]
