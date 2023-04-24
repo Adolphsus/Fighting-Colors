@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxbwvdv0lih6m"]
+[gd_scene load_steps=11 format=3 uid="uid://bxbwvdv0lih6m"]
 
 [ext_resource type="Texture2D" uid="uid://d1mxwowv8mle6" path="res://assets/Streets of Fight files/Stage Layers/back.png" id="1_5paak"]
 [ext_resource type="PackedScene" uid="uid://bktn544wckokf" path="res://Scenes/player.tscn" id="1_h2swh"]
+[ext_resource type="Texture2D" uid="uid://svbrgdnqf7d8" path="res://assets/Streets of Fight files/Stage Layers/fore.png" id="2_5gkjw"]
 [ext_resource type="Texture2D" uid="uid://cuuchk7auby44" path="res://assets/Streets of Fight files/Stage Layers/tileset.png" id="2_gcgbv"]
 [ext_resource type="Texture2D" uid="uid://jr1l56fakcbt" path="res://assets/Streets of Fight files/Stage Layers/props/Ethereum/ethereum-1.png" id="4_0t7m8"]
 [ext_resource type="Texture2D" uid="uid://c1erjhe12oglp" path="res://assets/Streets of Fight files/Stage Layers/props/Sushi/sushi-1.png" id="5_qjwj0"]
 [ext_resource type="PackedScene" uid="uid://d2r8vd0iljo6g" path="res://player_2.tscn" id="6_3i2qu"]
+[ext_resource type="PackedScene" uid="uid://ctiurf10vk1ym" path="res://enemy1.tscn" id="7_er5t7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gheo4"]
 texture = ExtResource("2_gcgbv")
@@ -1611,5 +1613,17 @@ format = 2
 
 [node name="Player" parent="." instance=ExtResource("1_h2swh")]
 position = Vector2(183, 103)
+collision_layer = 0
 
 [node name="Player2" parent="." instance=ExtResource("6_3i2qu")]
+collision_layer = 0
+collision_mask = 1
+
+[node name="Enemy1" parent="." instance=ExtResource("7_er5t7")]
+position = Vector2(392, 129)
+collision_layer = 0
+motion_mode = 1
+
+[node name="poste" type="Sprite2D" parent="."]
+position = Vector2(379, 166)
+texture = ExtResource("2_5gkjw")

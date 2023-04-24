@@ -8,6 +8,7 @@ class_name Player
 var speed_x = 70
 var speed_y = 40
 @export var can_move = true
+@onready var area_2d = $Pivot/Area2D
 
 ## Player script
 
@@ -16,8 +17,15 @@ var speed_y = 40
 @onready var pivot = $Pivot
 @onready var playback = animation_tree.get(\"parameters/playback\")
 
+
+	
+func on_area_entered(area: Node):
+	if area.get_parent().has_method(\"take_damage\"):
+		area.get_parent().take_damage()
+		
 func _ready():
 	animation_tree.animation_finished.connect(reset_movement)
+	area_2d.area_entered.connect(on_area_entered)
 
 
 func get_H():
@@ -67,11 +75,10 @@ func _physics_process(delta):
 
 
 	move_and_slide()
-	
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nayi"]
-size = Vector2(22.1143, 28)
+size = Vector2(22.1143, 10.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pd8tb"]
 size = Vector2(21, 7)
@@ -161,6 +168,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(26, -8)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Pivot/Area2D/CollisionShape2D2:shape")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_0nayi")]
 }
 
 [sub_resource type="Animation" id="Animation_h1pny"]
@@ -388,6 +407,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Pivot/Area2D/CollisionShape2D2:shape")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_0nayi")]
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5j0l"]
 size = Vector2(21, 7)
@@ -563,6 +594,8 @@ vframes = 9
 frame = 32
 
 [node name="Area2D" type="Area2D" parent="Pivot"]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Pivot/Area2D"]
 position = Vector2(26, -8)

@@ -1,11 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://d2r8vd0iljo6g"]
+[gd_scene load_steps=26 format=3 uid="uid://d2r8vd0iljo6g"]
 
 [ext_resource type="Texture2D" uid="uid://phnhm7ak72i0" path="res://assets/Streets of Fight files/Spritesheets/Long Hair Girl/long-hair-walk.png" id="1_y24rf"]
 
 [sub_resource type="GDScript" id="GDScript_52qv2"]
 script/source = "extends CharacterBody2D
+class_name Player
 var speed_x = 70
 var speed_y = 40
+@export var can_move = true
 
 ## Player script
 
@@ -14,11 +16,15 @@ var speed_y = 40
 @onready var pivot = $Pivot
 @onready var playback = animation_tree.get(\"parameters/playback\")
 
+func _ready():
+	animation_tree.animation_finished.connect(reset_movement)
+
+
 func get_H():
 	var input_direction_H = Input.get_axis(\"left2\", \"right2\")
 	if input_direction_H:
 		velocity.x = input_direction_H * speed_x
-		playback.travel(\"walk2\")
+		playback.travel(\"walk\")
 		pivot.scale.x = input_direction_H
 	else:
 		velocity.x = 0
@@ -27,25 +33,32 @@ func get_V():
 	var input_direction_V = Input.get_axis(\"up2\", \"down2\")
 	if input_direction_V:
 		velocity.y = input_direction_V * speed_y
-		playback.travel(\"walk2\")
+		playback.travel(\"walk\")
 	else:
 		velocity.y = 0
+		
+func reset_movement(anim_name): #agregar a lista de \"ifs\" si queremos agregar otra animacion igual
+#	print(anim_name)
+	if anim_name == \"punch\" or anim_name == \"kick\":
+		can_move = true
 
 func attacks():
-	if Input.is_action_pressed(\"punch2\"):
-		playback.call_deferred(\"travel\", \"punch2\")
-	elif Input.is_action_pressed(\"kick2\"):
-		playback.call_deferred(\"travel\", \"kick2\")
-
-
-
-
+	if Input.is_action_just_pressed(\"punch2\"):
+		set_deferred(\"can_move\", false)
+		playback.call_deferred(\"travel\", \"punch\")
+	elif Input.is_action_just_pressed(\"kick2\"):
+		set_deferred(\"can_move\", false)
+		playback.call_deferred(\"travel\", \"kick\")
+		
 func _physics_process(delta):
 	attacks()
-	get_H()
-	get_V()
+	if can_move:
+		get_H()
+		get_V()
+	else:
+		velocity = Vector2.ZERO
 	if velocity.x == 0 and velocity.y == 0:
-		playback.travel(\"idle2\")
+		playback.travel(\"idle\")
 
 
 	move_and_slide()
@@ -121,7 +134,7 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_uoqfp"]
-resource_name = "idle2"
+resource_name = "idle"
 length = 0.35
 loop_mode = 1
 tracks/0/type = "value"
@@ -138,9 +151,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_oji7o"]
-resource_name = "kick2"
-length = 1.1
-loop_mode = 1
+resource_name = "kick"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -160,7 +172,7 @@ tracks/1/path = NodePath("../../Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [16, 17, 18, 19, 20, 21]
@@ -203,9 +215,8 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_0otly"]
-resource_name = "punch2"
+resource_name = "punch"
 length = 0.5
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -244,7 +255,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_h4s67"]
-resource_name = "walk2"
+resource_name = "walk"
 length = 0.75
 loop_mode = 1
 tracks/0/type = "value"
@@ -263,59 +274,65 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_22ex7"]
 _data = {
 "RESET": SubResource("Animation_hc6fs"),
-"idle2": SubResource("Animation_uoqfp"),
-"kick2": SubResource("Animation_oji7o"),
-"punch2": SubResource("Animation_0otly"),
-"walk2": SubResource("Animation_h4s67")
+"idle": SubResource("Animation_uoqfp"),
+"kick": SubResource("Animation_oji7o"),
+"punch": SubResource("Animation_0otly"),
+"walk": SubResource("Animation_h4s67")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bo68a"]
-animation = &"idle2"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iyupu"]
+animation = &"idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eqi02"]
-animation = &"kick2"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vijhp"]
+animation = &"kick"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_30aaf"]
-animation = &"punch2"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nnqhf"]
+animation = &"punch"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qs20y"]
-animation = &"walk2"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_amei0"]
+animation = &"walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_41j5p"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yfnr4"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sp34b"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ypa48"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0d13u"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jwp0j"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_atsuy"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qsd8w"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lcwc1"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6lwxx"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3e0ll"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7r0gi"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_02ij0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m5xt0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m33be"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ukac4"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8lxx5"]
-states/idle2/node = SubResource("AnimationNodeAnimation_bo68a")
-states/idle2/position = Vector2(473, 100)
-states/kick2/node = SubResource("AnimationNodeAnimation_eqi02")
-states/kick2/position = Vector2(670, 12.7544)
-states/punch2/node = SubResource("AnimationNodeAnimation_30aaf")
-states/punch2/position = Vector2(473, 12.7544)
-states/walk2/node = SubResource("AnimationNodeAnimation_qs20y")
-states/walk2/position = Vector2(670, 100)
-transitions = ["Start", "idle2", SubResource("AnimationNodeStateMachineTransition_41j5p"), "idle2", "walk2", SubResource("AnimationNodeStateMachineTransition_sp34b"), "walk2", "idle2", SubResource("AnimationNodeStateMachineTransition_ypa48"), "punch2", "idle2", SubResource("AnimationNodeStateMachineTransition_0d13u"), "kick2", "idle2", SubResource("AnimationNodeStateMachineTransition_atsuy"), "idle2", "punch2", SubResource("AnimationNodeStateMachineTransition_lcwc1"), "idle2", "kick2", SubResource("AnimationNodeStateMachineTransition_3e0ll")]
+states/idle/node = SubResource("AnimationNodeAnimation_iyupu")
+states/idle/position = Vector2(437, 100)
+states/kick/node = SubResource("AnimationNodeAnimation_vijhp")
+states/kick/position = Vector2(437, 0.754395)
+states/punch/node = SubResource("AnimationNodeAnimation_nnqhf")
+states/punch/position = Vector2(658, 0.754395)
+states/walk/node = SubResource("AnimationNodeAnimation_amei0")
+states/walk/position = Vector2(658, 99.2456)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_yfnr4"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_jwp0j"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_qsd8w"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_6lwxx"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_7r0gi"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_02ij0"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_m5xt0"), "walk", "kick", SubResource("AnimationNodeStateMachineTransition_m33be"), "walk", "punch", SubResource("AnimationNodeStateMachineTransition_ukac4")]
 graph_offset = Vector2(0, -42.2456)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ultyk"]
 
 [node name="Player2" type="CharacterBody2D"]
 position = Vector2(228, 145)
+collision_layer = 2
+collision_mask = 2
 motion_mode = 1
 script = SubResource("GDScript_52qv2")
 
@@ -326,7 +343,7 @@ position = Vector2(3, -8)
 texture = ExtResource("1_y24rf")
 hframes = 8
 vframes = 6
-frame = 8
+frame = 32
 
 [node name="Area2D" type="Area2D" parent="Pivot"]
 
