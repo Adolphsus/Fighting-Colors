@@ -21,7 +21,7 @@ var speed_y = 40
 	
 func on_area_entered(area: Node):
 	if area.get_parent().has_method(\"take_damage\"):
-		area.get_parent().take_damage()
+		area.get_parent().take_damage('player1')
 		
 func _ready():
 	animation_tree.animation_finished.connect(reset_movement)
@@ -595,9 +595,10 @@ frame = 32
 
 [node name="Area2D" type="Area2D" parent="Pivot"]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 5
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Pivot/Area2D"]
+light_mask = 4
 position = Vector2(26, -8)
 shape = SubResource("RectangleShape2D_0nayi")
 disabled = true

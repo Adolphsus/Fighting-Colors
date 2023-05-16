@@ -8,6 +8,7 @@ class_name Player
 var speed_x = 70
 var speed_y = 40
 @export var can_move = true
+@onready var area_2d = $Pivot/Area2D
 
 ## Player script
 
@@ -16,10 +17,14 @@ var speed_y = 40
 @onready var pivot = $Pivot
 @onready var playback = animation_tree.get(\"parameters/playback\")
 
+func on_area_entered(area: Node):
+	if area.get_parent().has_method(\"take_damage\"):
+		area.get_parent().take_damage('player2')
+		
 func _ready():
 	animation_tree.animation_finished.connect(reset_movement)
-
-
+	area_2d.area_entered.connect(on_area_entered)
+	
 func get_H():
 	var input_direction_H = Input.get_axis(\"left2\", \"right2\")
 	if input_direction_H:
@@ -59,7 +64,6 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 	if velocity.x == 0 and velocity.y == 0:
 		playback.travel(\"idle\")
-
 
 	move_and_slide()
 "
@@ -106,7 +110,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -208,7 +212,7 @@ tracks/4/path = NodePath(".:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.8),
+"times": PackedFloat32Array(0, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -248,10 +252,10 @@ tracks/2/path = NodePath(".:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_h4s67"]
@@ -346,10 +350,13 @@ vframes = 6
 frame = 32
 
 [node name="Area2D" type="Area2D" parent="Pivot"]
+collision_layer = 0
+collision_mask = 5
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Pivot/Area2D"]
 position = Vector2(29, -3)
 shape = SubResource("RectangleShape2D_0nayi")
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 21)
