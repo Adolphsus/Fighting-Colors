@@ -8,8 +8,8 @@ class_name Enemy
 @onready var progress_bar = $MarginContainer/ProgressBar
 @onready var sprite_2d = $Sprite2D
 
-const Max_health = 99999
-var health = 99999:
+const Max_health = 200
+var health = 200:
 	set(value):
 		health = value
 		progress_bar.value = value
@@ -31,6 +31,10 @@ func take_damage(player):
 	health = max(health - 25, 0)
 	playback.travel("hurt")
 	var tween = create_tween()
+	tween.tween_property(sprite_2d, "position", Vector2(randf_range(0,5),randf_range(0,1)), 0.06)
+	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-5,0),randf_range(-1,0)), 0.06)
+	tween.tween_property(sprite_2d, "position", Vector2(randf_range(0,5),randf_range(0,1)), 0.06)
+	tween.tween_property(sprite_2d, "position", Vector2(), 0.1)
 	if player == 'player1':
 		tween.tween_callback($Sprite2D.set_modulate.bind(Color.RED)).set_delay(2)
 	if player == 'player2':
