@@ -1,7 +1,6 @@
-[gd_scene load_steps=29 format=3 uid="uid://ctiurf10vk1ym"]
+[gd_scene load_steps=28 format=3 uid="uid://bbnv6o2buttyd"]
 
-[ext_resource type="Script" path="res://enemy1.gd" id="1_27802"]
-[ext_resource type="Texture2D" uid="uid://dtu6p7mcquvbx" path="res://assets/Streets of Fight files/Spritesheets/Enemy Punk/all movement enemy1.png" id="2_2rl65"]
+[ext_resource type="Texture2D" uid="uid://cmcxf1v7y0rt7" path="res://assets/Streets of Fight files/Spritesheets/Big Guy/big_guy_all.png" id="1_yrjjd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggwkn"]
 size = Vector2(21, 7)
@@ -34,7 +33,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [12, 13]
+"values": [0, 16]
 }
 
 [sub_resource type="Animation" id="Animation_6u8xn"]
@@ -66,11 +65,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [12, 13, 14, 15]
+"values": [0, 16, 17, 18]
 }
 
 [sub_resource type="Animation" id="Animation_hc1hy"]
 resource_name = "punch"
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -78,15 +78,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.6, 0.8, 0.9),
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [8, 9, 10, 9, 8]
+"values": [5, 6, 7, 8, 9]
 }
 
 [sub_resource type="Animation" id="Animation_tpk75"]
 resource_name = "walk"
-length = 0.63
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -95,10 +95,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [4, 5, 6, 7]
+"values": [10, 11, 12, 13]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e8tjr"]
@@ -169,19 +169,20 @@ states/walk/position = Vector2(377, 321)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3pkrm"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_qp7uw"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_uustt"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_07exw"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_q1xh4"), "idle", "knockdown", SubResource("AnimationNodeStateMachineTransition_ro781"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_c7kpe"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_ru345"), "knockdown", "idle", SubResource("AnimationNodeStateMachineTransition_8siwf"), "knockdown", "End", SubResource("AnimationNodeStateMachineTransition_kn386")]
 graph_offset = Vector2(24, 21.0309)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_0sk2y"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_7ljwv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryxtj"]
 size = Vector2(28, 24)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Enemy2" type="CharacterBody2D"]
+collision_layer = 0
 motion_mode = 1
-script = ExtResource("1_27802")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_2rl65")
-hframes = 4
+texture = ExtResource("1_yrjjd")
+flip_h = true
+hframes = 5
 vframes = 4
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
@@ -197,7 +198,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_ypha6")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_0sk2y")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_7ljwv")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 4
