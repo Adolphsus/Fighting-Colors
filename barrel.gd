@@ -13,9 +13,9 @@ var state = 'idle'
 func take_damage(player):
 	state = 'hurt'
 	var tween = create_tween()
-	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),randf_range(-10,10)), 0.02)
-	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),randf_range(-10,10)), 0.02)
-	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),randf_range(-10,10)), 0.02)
+	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),randf_range(-3, 3)), 0.02)
+	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),randf_range(-3, 3)), 0.02)
+	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),randf_range(-3, 3)), 0.02)
 	tween.tween_property(sprite_2d, "position", Vector2(), 0.02)
 	if player == 'player1':
 		health -= 25

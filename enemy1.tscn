@@ -174,9 +174,10 @@ graph_offset = Vector2(24, 21.0309)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryxtj"]
 size = Vector2(28, 24)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent")]
 motion_mode = 1
 script = ExtResource("1_27802")
+navigation_agent = NodePath("NavigationAgent2D")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -219,3 +220,6 @@ modulate = Color(0.878431, 0, 0, 1)
 layout_mode = 2
 max_value = 200.0
 show_percentage = false
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true

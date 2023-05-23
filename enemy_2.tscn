@@ -1,5 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://bbnv6o2buttyd"]
+[gd_scene load_steps=29 format=3 uid="uid://bbnv6o2buttyd"]
 
+[ext_resource type="Script" path="res://enemy_2.gd" id="1_lhj1j"]
 [ext_resource type="Texture2D" uid="uid://cmcxf1v7y0rt7" path="res://assets/Streets of Fight files/Spritesheets/Big Guy/big_guy_all.png" id="1_yrjjd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggwkn"]
@@ -174,9 +175,11 @@ graph_offset = Vector2(24, 21.0309)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryxtj"]
 size = Vector2(28, 24)
 
-[node name="Enemy2" type="CharacterBody2D"]
+[node name="Enemy2" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent")]
 collision_layer = 0
 motion_mode = 1
+script = ExtResource("1_lhj1j")
+navigation_agent = NodePath("NavigationAgent2D")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -220,3 +223,5 @@ modulate = Color(0.878431, 0, 0, 1)
 layout_mode = 2
 max_value = 200.0
 show_percentage = false
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
