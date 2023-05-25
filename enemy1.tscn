@@ -1,7 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://ctiurf10vk1ym"]
+[gd_scene load_steps=31 format=3 uid="uid://ctiurf10vk1ym"]
 
 [ext_resource type="Script" path="res://enemy1.gd" id="1_27802"]
 [ext_resource type="Texture2D" uid="uid://dtu6p7mcquvbx" path="res://assets/Streets of Fight files/Spritesheets/Enemy Punk/all movement enemy1.png" id="2_2rl65"]
+[ext_resource type="AudioStream" uid="uid://bfna6g1o16fbu" path="res://assets/MP3/body_hit.wav" id="3_4vcfx"]
+[ext_resource type="AudioStream" uid="uid://bno1ssgs75k4p" path="res://assets/MP3/Male Grunt-SoundBible.com-68178715.mp3" id="4_hxyi5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggwkn"]
 size = Vector2(21, 7)
@@ -227,3 +229,9 @@ debug_enabled = true
 [node name="Hit_stun" type="Timer" parent="."]
 wait_time = 1.147
 one_shot = true
+
+[node name="hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4vcfx")
+
+[node name="grunt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hxyi5")

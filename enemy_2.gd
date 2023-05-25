@@ -16,6 +16,10 @@ var movement_speed: float = 40.0
 @export var target: CharacterBody2D
 @export var navigation_agent: NavigationAgent2D
 
+# Audio
+@onready var audio_stream_player_hurt = $hurt
+@onready var audio_stream_player_grunt = $grunt
+
 #vida y barra de vida
 const Max_health = 200
 var health = 200:
@@ -58,6 +62,7 @@ func set_movement_target(movement_target: Vector2):
 func take_damage(player):
 	state = HURT
 	health = max(health - 25, 0)
+	audio_stream_player_hurt.play()
 	playback.travel("hurt")
 	var tween = create_tween()
 	tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
@@ -69,6 +74,7 @@ func take_damage(player):
 	if player == 'player2':
 		tween.tween_callback($Sprite2D.set_modulate.bind(Color.BLUE)).set_delay(0.5)
 	if health == 0:
+		audio_stream_player_grunt.play()
 		playback.travel("knockdown")
 		state = DEATH
 	else:

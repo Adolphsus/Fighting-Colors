@@ -1,6 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://d2r8vd0iljo6g"]
+[gd_scene load_steps=28 format=3 uid="uid://d2r8vd0iljo6g"]
 
 [ext_resource type="Texture2D" uid="uid://phnhm7ak72i0" path="res://assets/Streets of Fight files/Spritesheets/Long Hair Girl/long-hair-walk.png" id="1_y24rf"]
+[ext_resource type="AudioStream" uid="uid://bui1xt0is8wco" path="res://assets/MP3/kick_whoosh.wav" id="2_knw35"]
+[ext_resource type="AudioStream" uid="uid://msrkkdrk83l5" path="res://assets/MP3/punch_whoosh.wav" id="3_602b7"]
 
 [sub_resource type="GDScript" id="GDScript_52qv2"]
 script/source = "extends CharacterBody2D
@@ -19,6 +21,10 @@ var combo_step = 0
 @onready var animation_player = $AnimationPlayer
 @onready var pivot = $Pivot
 @onready var playback = animation_tree.get(\"parameters/playback\")
+
+# Audio
+@onready var audio_stream_player_kick = $kick
+@onready var audio_stream_player_punch = $punch
 
 func on_area_entered(area: Node):
 	if area.get_parent().has_method(\"take_damage\"):
@@ -54,9 +60,11 @@ func attacks():
 	if Input.is_action_just_pressed(\"punch2\"):
 		set_deferred(\"can_move\", false)
 		playback.call_deferred(\"travel\", \"punch\")
+		audio_stream_player_punch.play()
 	elif Input.is_action_just_pressed(\"kick2\"):
 		set_deferred(\"can_move\", false)
 		playback.call_deferred(\"travel\", \"kick\")
+		audio_stream_player_kick.play()
 		
 func _physics_process(delta):
 	attacks()
@@ -385,3 +393,9 @@ active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_ultyk")
 
 [node name="ComboCD" type="Timer" parent="."]
+
+[node name="kick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_knw35")
+
+[node name="punch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_602b7")

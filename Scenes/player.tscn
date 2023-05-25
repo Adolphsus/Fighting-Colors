@@ -1,6 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://bktn544wckokf"]
+[gd_scene load_steps=33 format=3 uid="uid://bktn544wckokf"]
 
 [ext_resource type="Texture2D" uid="uid://bklj6p80cnjj8" path="res://assets/Streets of Fight files/Spritesheets/Brawler Girl/all movement.png" id="1_3qgph"]
+[ext_resource type="AudioStream" uid="uid://bui1xt0is8wco" path="res://assets/MP3/kick_whoosh.wav" id="2_v4hsc"]
+[ext_resource type="AudioStream" uid="uid://msrkkdrk83l5" path="res://assets/MP3/punch_whoosh.wav" id="3_waov0"]
 
 [sub_resource type="GDScript" id="GDScript_52qv2"]
 script/source = "extends CharacterBody2D
@@ -19,6 +21,10 @@ var combo_step = 0
 @onready var animation_player = $AnimationPlayer
 @onready var pivot = $Pivot
 @onready var playback = animation_tree.get(\"parameters/playback\")
+
+# Audio
+@onready var audio_stream_player_kick = $kick
+@onready var audio_stream_player_punch = $punch
 
 func on_area_entered(area: Node):
 	if area.get_parent().has_method(\"take_damage\"):
@@ -55,9 +61,11 @@ func attacks():
 	if Input.is_action_just_pressed(\"punch\"):
 		set_deferred(\"can_move\", false)
 		playback.call_deferred(\"travel\", \"punch\")
+		audio_stream_player_punch.play()
 	elif Input.is_action_just_pressed(\"kick\"):
 		set_deferred(\"can_move\", false)
 		playback.call_deferred(\"travel\", \"kick\")
+		audio_stream_player_kick.play()
 		
 
 
@@ -618,7 +626,7 @@ libraries = {
 zoom = Vector2(0.7, 0.7)
 limit_left = 0
 limit_top = 0
-limit_right = 1200
+limit_right = 999999
 limit_bottom = 240
 drag_horizontal_enabled = true
 drag_horizontal_offset = 1.0
@@ -632,3 +640,9 @@ active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_lrwkw")
 
 [node name="ComboCD" type="Timer" parent="."]
+
+[node name="kick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_v4hsc")
+
+[node name="punch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_waov0")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://ccvd22tllb2ax"]
+[gd_scene load_steps=30 format=3 uid="uid://ccvd22tllb2ax"]
 
 [ext_resource type="Texture2D" uid="uid://cln6hf1okxypw" path="res://assets/Streets of Fight files/Spritesheets/Punk girl/punk_girl_all.png" id="1_0854r"]
 [ext_resource type="Script" path="res://enemy_3.gd" id="1_wdks3"]
+[ext_resource type="AudioStream" uid="uid://bfna6g1o16fbu" path="res://assets/MP3/body_hit.wav" id="3_swph7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggwkn"]
 size = Vector2(21, 7)
@@ -227,3 +228,6 @@ show_percentage = false
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Hit_stun" type="Timer" parent="."]
+
+[node name="hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_swph7")
