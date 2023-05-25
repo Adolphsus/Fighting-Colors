@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var playback = animation_tree.get("parameters/playback")
 @onready var progress_bar = $MarginContainer/ProgressBar
 @onready var sprite_2d = $Sprite2D
+@onready var hit_stun = $Hit_stun
 
 #Color actual
 enum {RED, BLUE, NONE}
@@ -37,13 +38,15 @@ var state = IDLE
 func _ready():
 	progress_bar.value = Max_health
 	
-	#PATHFINDING
+	# PATHFINDING
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
 	navigation_agent.path_desired_distance = 20.0
 	navigation_agent.target_desired_distance = 30.0
 	# Make sure to not await during _ready.
 	call_deferred("actor_setup")
+	
+	hit_stun.timeout.connect(seek_player)
 
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -71,9 +74,9 @@ func take_damage(player):
 	if health == 0:
 		playback.travel("knockdown")
 		state = DEATH
+		hit_stun.stop()
 	else:
-		await get_tree().create_timer(0.9).timeout
-		state = SEEK
+		hit_stun.start(0.9)
 
 func _physics_process(delta):
 	if state == DEATH:
@@ -97,3 +100,6 @@ func _physics_process(delta):
 
 		velocity = new_velocity
 		move_and_slide()
+
+func seek_player():
+	state = SEEK

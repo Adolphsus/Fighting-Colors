@@ -223,3 +223,7 @@ show_percentage = false
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
+
+[node name="Hit_stun" type="Timer" parent="."]
+wait_time = 1.147
+one_shot = true

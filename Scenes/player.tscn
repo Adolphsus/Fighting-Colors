@@ -10,15 +10,16 @@ var speed_y = 40
 @export var can_move = true
 @onready var area_2d = $Pivot/Area2D
 
-## Player script
+#combos
+@onready var combo_cd = $ComboCD
+var combo_step = 0
 
+## Player script
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
 @onready var pivot = $Pivot
 @onready var playback = animation_tree.get(\"parameters/playback\")
 
-
-	
 func on_area_entered(area: Node):
 	if area.get_parent().has_method(\"take_damage\"):
 		area.get_parent().take_damage('player1')
@@ -629,3 +630,5 @@ tree_root = SubResource("AnimationNodeStateMachine_8lxx5")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_lrwkw")
+
+[node name="ComboCD" type="Timer" parent="."]

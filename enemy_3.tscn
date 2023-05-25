@@ -225,3 +225,5 @@ max_value = 200.0
 show_percentage = false
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Hit_stun" type="Timer" parent="."]
