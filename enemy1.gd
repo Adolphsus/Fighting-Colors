@@ -63,19 +63,38 @@ func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
 func take_damage(player):
-	state = HURT
-	health = max(health - 25, 0)
-	audio_stream_player_hurt.play()
-	playback.travel("hurt")
-	var tween = create_tween()
-	tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
-	tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
-	tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
-	tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
 	if player == 'player1':
-		tween.tween_callback($Sprite2D.set_modulate.bind(Color.RED)).set_delay(0.5)
+		if color == RED or color == NONE:
+			state = HURT
+			health = max(health - 25, 0)
+			audio_stream_player_hurt.play()
+			playback.travel("hurt")
+			var tween = create_tween()
+			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+			tween.tween_callback($Sprite2D.set_modulate.bind(Color.BLUE)).set_delay(0.5)
+			color = BLUE
+		elif color == BLUE:
+			health = min(health + 25, Max_health)
+			
 	if player == 'player2':
-		tween.tween_callback($Sprite2D.set_modulate.bind(Color.BLUE)).set_delay(0.5)
+		if color == BLUE or color == NONE:
+			state = HURT
+			health = max(health - 25, 0)
+			audio_stream_player_hurt.play()
+			playback.travel("hurt")
+			var tween = create_tween()
+			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+			tween.tween_callback($Sprite2D.set_modulate.bind(Color.RED)).set_delay(0.5)
+			color = RED
+		elif color == RED:
+			health = min(health + 25, Max_health)
+			
 	if health == 0:
 		audio_stream_player_grunt.play()
 		playback.travel("knockdown")

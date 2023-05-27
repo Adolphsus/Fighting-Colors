@@ -1660,6 +1660,7 @@ position = Vector2(183, 103)
 collision_layer = 0
 
 [node name="Player2" parent="Kinetic/Players" instance=ExtResource("6_3i2qu")]
+position = Vector2(216, 149)
 collision_layer = 0
 collision_mask = 1
 

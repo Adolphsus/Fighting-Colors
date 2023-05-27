@@ -345,11 +345,11 @@ graph_offset = Vector2(0, -42.2456)
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ultyk"]
 
 [node name="Player2" type="CharacterBody2D"]
-position = Vector2(228, 145)
 collision_layer = 2
 collision_mask = 2
 motion_mode = 1
 script = SubResource("GDScript_52qv2")
+metadata/_edit_group_ = true
 
 [node name="Pivot" type="Node2D" parent="."]
 
@@ -358,7 +358,7 @@ position = Vector2(3, -8)
 texture = ExtResource("1_y24rf")
 hframes = 8
 vframes = 6
-frame = 32
+frame = 8
 
 [node name="Area2D" type="Area2D" parent="Pivot"]
 collision_layer = 0
@@ -370,7 +370,7 @@ shape = SubResource("RectangleShape2D_0nayi")
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 21)
+position = Vector2(1, 20)
 shape = SubResource("RectangleShape2D_pd8tb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
