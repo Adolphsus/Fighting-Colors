@@ -14,7 +14,8 @@ var color = NONE
 
 #variables de navegación
 var movement_speed: float = 40.0
-@export var target: CharacterBody2D
+@export var target1: CharacterBody2D
+@export var target2: CharacterBody2D
 @export var navigation_agent: NavigationAgent2D
 
 # Audio
@@ -56,26 +57,38 @@ func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
 	await get_tree().physics_frame
 	# Now that the navigation map is no longer empty, set the movement target.
-	set_movement_target(target.position)
+	set_movement_target(target1.position)
 
 #setea la posición del target al que va a llegar
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
 func take_damage(player):
-	state = HURT
-	health = max(health - 25, 0)
-	audio_stream_player_hurt.play()
-	playback.travel("hurt")
 	var tween = create_tween()
-	tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
-	tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
-	tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
-	tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
 	if player == 'player1':
-		tween.tween_callback($Sprite2D.set_modulate.bind(Color.RED)).set_delay(0.5)
+		if color ==RED or color == NONE:
+			state = HURT
+			health = max(health - 25, 0)
+			audio_stream_player_hurt.play()
+			playback.travel("hurt")
+			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+			tween.tween_callback($Sprite2D.set_modulate.bind(Color.BLUE)).set_delay(0.5)
+			color = BLUE
 	if player == 'player2':
-		tween.tween_callback($Sprite2D.set_modulate.bind(Color.BLUE)).set_delay(0.5)
+		if color == BLUE or color == NONE:
+			state = HURT
+			health = max(health - 25, 0)
+			audio_stream_player_hurt.play()
+			playback.travel("hurt")
+			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+			tween.tween_callback($Sprite2D.set_modulate.bind(Color.RED)).set_delay(0.5)
+			color = RED
 	if health == 0:
 		audio_stream_player_grunt.play()
 		playback.travel("knockdown")
@@ -86,26 +99,43 @@ func take_damage(player):
 
 func _physics_process(delta):
 	if state == DEATH:
+		color = NONE
 		movement_speed = 0
 		await get_tree().create_timer(2.0).timeout
 		queue_free()
 	if state == HURT:
 		movement_speed = 0
 	if state == SEEK:
-		movement_speed = 40.0
-		set_movement_target(target.position)
-		if navigation_agent.is_navigation_finished():
-			return
+		if color == RED:
+			movement_speed = 40.0
+			set_movement_target(target1.position)
+			if navigation_agent.is_navigation_finished():
+				return
 
-		var current_agent_position: Vector2 = global_position
-		var next_path_position: Vector2 = navigation_agent.get_next_path_position()
+			var current_agent_position: Vector2 = global_position
+			var next_path_position: Vector2 = navigation_agent.get_next_path_position()
 
-		var new_velocity: Vector2 = next_path_position - current_agent_position
-		new_velocity = new_velocity.normalized()
-		new_velocity = new_velocity * movement_speed
+			var new_velocity: Vector2 = next_path_position - current_agent_position
+			new_velocity = new_velocity.normalized()
+			new_velocity = new_velocity * movement_speed
 
-		velocity = new_velocity
-		move_and_slide()
+			velocity = new_velocity
+			move_and_slide()
+		if color == BLUE:
+			movement_speed = 40.0
+			set_movement_target(target2.position)
+			if navigation_agent.is_navigation_finished():
+				return
+
+			var current_agent_position: Vector2 = global_position
+			var next_path_position: Vector2 = navigation_agent.get_next_path_position()
+
+			var new_velocity: Vector2 = next_path_position - current_agent_position
+			new_velocity = new_velocity.normalized()
+			new_velocity = new_velocity * movement_speed
+
+			velocity = new_velocity
+			move_and_slide()
 
 func seek_player():
 	state = SEEK

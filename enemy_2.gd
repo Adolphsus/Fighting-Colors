@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var playback = animation_tree.get("parameters/playback")
 @onready var progress_bar = $MarginContainer/ProgressBar
 @onready var sprite_2d = $Sprite2D
+@onready var hit_stun = $Hit_stun
 
 #Color actual
 enum {RED, BLUE, NONE}
@@ -48,6 +49,7 @@ func _ready():
 	navigation_agent.target_desired_distance = 30.0
 	# Make sure to not await during _ready.
 	call_deferred("actor_setup")
+	hit_stun.timeout.connect(seek_player)
 
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -60,29 +62,46 @@ func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
 func take_damage(player):
-	state = HURT
-	health = max(health - 25, 0)
-	audio_stream_player_hurt.play()
-	playback.travel("hurt")
-	var tween = create_tween()
-	tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
-	tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
-	tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
-	tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
 	if player == 'player1':
-		tween.tween_callback($Sprite2D.set_modulate.bind(Color.RED)).set_delay(0.5)
+		if color ==RED or color == NONE:
+			state = HURT
+			health = max(health - 25, 0)
+			audio_stream_player_hurt.play()
+			playback.travel("hurt")
+			var tween = create_tween()
+			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+			tween.tween_callback($Sprite2D.set_modulate.bind(Color.BLUE)).set_delay(0.5)
+			color = BLUE
 	if player == 'player2':
-		tween.tween_callback($Sprite2D.set_modulate.bind(Color.BLUE)).set_delay(0.5)
+		if color == BLUE or color == NONE:
+			state = HURT
+			health = max(health - 25, 0)
+			audio_stream_player_hurt.play()
+			playback.travel("hurt")
+			var tween = create_tween()
+			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+			tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+			tween.tween_callback($Sprite2D.set_modulate.bind(Color.RED)).set_delay(0.5)
+			color = RED
 	if health == 0:
 		audio_stream_player_grunt.play()
 		playback.travel("knockdown")
 		state = DEATH
+		hit_stun.stop()
 	else:
-		await get_tree().create_timer(0.9).timeout
-		state = SEEK
+		hit_stun.start(0.9)
+
+func seek_player():
+	state = SEEK
 
 func _physics_process(delta):
 	if state == DEATH:
+		color = NONE
 		movement_speed = 0
 		await get_tree().create_timer(2.0).timeout
 		queue_free()
