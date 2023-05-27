@@ -14,8 +14,7 @@ var color = NONE
 
 #variables de navegación
 var movement_speed: float = 40.0
-@export var target1: CharacterBody2D
-@export var target2: CharacterBody2D
+@export var target: CharacterBody2D
 @export var navigation_agent: NavigationAgent2D
 
 # Audio
@@ -53,12 +52,11 @@ func _ready():
 	
 	hit_stun.timeout.connect(seek_player)
 
-
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
 	await get_tree().physics_frame
 	# Now that the navigation map is no longer empty, set the movement target.
-	set_movement_target(target1.position)
+	set_movement_target(target.position)
 
 #setea la posición del target al que va a llegar
 func set_movement_target(movement_target: Vector2):
@@ -94,37 +92,20 @@ func _physics_process(delta):
 	if state == HURT:
 		movement_speed = 0
 	if state == SEEK:
-		if color == RED:
-			movement_speed = 40.0
-			set_movement_target(target1.position)
-			if navigation_agent.is_navigation_finished():
-				return
+		movement_speed = 40.0
+		set_movement_target(target.position)
+		if navigation_agent.is_navigation_finished():
+			return
 
-			var current_agent_position: Vector2 = global_position
-			var next_path_position: Vector2 = navigation_agent.get_next_path_position()
+		var current_agent_position: Vector2 = global_position
+		var next_path_position: Vector2 = navigation_agent.get_next_path_position()
 
-			var new_velocity: Vector2 = next_path_position - current_agent_position
-			new_velocity = new_velocity.normalized()
-			new_velocity = new_velocity * movement_speed
+		var new_velocity: Vector2 = next_path_position - current_agent_position
+		new_velocity = new_velocity.normalized()
+		new_velocity = new_velocity * movement_speed
 
-			velocity = new_velocity
-			move_and_slide()
-		
-		elif color == BLUE:
-			movement_speed = 40.0
-			set_movement_target(target2.position)
-			if navigation_agent.is_navigation_finished():
-				return
-
-			var current_agent_position: Vector2 = global_position
-			var next_path_position: Vector2 = navigation_agent.get_next_path_position()
-
-			var new_velocity: Vector2 = next_path_position - current_agent_position
-			new_velocity = new_velocity.normalized()
-			new_velocity = new_velocity * movement_speed
-
-			velocity = new_velocity
-			move_and_slide()
+		velocity = new_velocity
+		move_and_slide()
 
 func seek_player():
 	state = SEEK
