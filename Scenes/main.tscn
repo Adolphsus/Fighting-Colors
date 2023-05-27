@@ -1676,10 +1676,11 @@ navigation_polygon = SubResource("NavigationPolygon_pcnwj")
 [node name="Enemies" type="Node2D" parent="Kinetic/NavigationRegion2D"]
 y_sort_enabled = true
 
-[node name="Enemy1" parent="Kinetic/NavigationRegion2D/Enemies" node_paths=PackedStringArray("target") instance=ExtResource("7_er5t7")]
+[node name="Enemy1" parent="Kinetic/NavigationRegion2D/Enemies" node_paths=PackedStringArray("target1", "target2") instance=ExtResource("7_er5t7")]
 position = Vector2(313, 159)
 collision_layer = 0
-target = NodePath("../../../Players/Player")
+target1 = NodePath("../../../Players/Player")
+target2 = NodePath("../../../Players/Player2")
 
 [node name="Enemy3" parent="Kinetic/NavigationRegion2D/Enemies" node_paths=PackedStringArray("target") instance=ExtResource("10_r4h2x")]
 position = Vector2(348, 111)

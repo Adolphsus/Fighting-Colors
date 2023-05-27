@@ -358,7 +358,11 @@ position = Vector2(3, -8)
 texture = ExtResource("1_y24rf")
 hframes = 8
 vframes = 6
+<<<<<<< Updated upstream
 frame = 32
+=======
+frame = 11
+>>>>>>> Stashed changes
 
 [node name="Area2D" type="Area2D" parent="Pivot"]
 collision_layer = 0
