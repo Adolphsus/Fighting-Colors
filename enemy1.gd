@@ -92,6 +92,7 @@ func _physics_process(delta):
 	if state == HURT:
 		movement_speed = 0
 	if state == SEEK:
+		playback.travel("walk")
 		movement_speed = 40.0
 		set_movement_target(target.position)
 		if navigation_agent.is_navigation_finished():
