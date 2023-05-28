@@ -5,8 +5,9 @@ extends CharacterBody2D
 @onready var animation_player = $AnimationPlayer
 @onready var playback = animation_tree.get("parameters/playback")
 @onready var progress_bar = $MarginContainer/ProgressBar
-@onready var sprite_2d = $Sprite2D
 @onready var hit_stun = $Hit_stun
+@onready var pivot = $Pivot
+@onready var sprite_2d = $Pivot/Sprite2D
 
 #Color actual
 enum {RED, BLUE, NONE}
@@ -72,7 +73,7 @@ func take_damage(player):
 			tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
 			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
 			tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
-			tween.tween_callback($Sprite2D.set_modulate.bind(Color.BLUE)).set_delay(0.5)
+			tween.tween_callback($Pivot/Sprite2D.set_modulate.bind(Color.BLUE)).set_delay(0.5)
 			color = BLUE
 	if player == 'player2':
 		if color == BLUE or color == NONE:
@@ -85,7 +86,7 @@ func take_damage(player):
 			tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
 			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
 			tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
-			tween.tween_callback($Sprite2D.set_modulate.bind(Color.RED)).set_delay(0.5)
+			tween.tween_callback($Pivot/Sprite2D.set_modulate.bind(Color.RED)).set_delay(0.5)
 			color = RED
 	if health == 0:
 #		audio_stream_player_grunt.play()
@@ -107,10 +108,15 @@ func _physics_process(delta):
 	if state == HURT:
 		movement_speed = 0
 	if state == SEEK:
+		playback.travel("walk")
+		if velocity.x > 0:
+			pivot.scale.x = -1
+		if velocity.x < 0:
+			pivot.scale.x = 1 
 		movement_speed = 40.0
 		set_movement_target(target.position)
 		if navigation_agent.is_navigation_finished():
-			return
+			state = IDLE
 
 		var current_agent_position: Vector2 = global_position
 		var next_path_position: Vector2 = navigation_agent.get_next_path_position()
@@ -121,3 +127,5 @@ func _physics_process(delta):
 
 		velocity = new_velocity
 		move_and_slide()
+	if state == IDLE:
+		playback.travel("idle")

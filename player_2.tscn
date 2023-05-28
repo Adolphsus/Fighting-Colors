@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d2r8vd0iljo6g"]
+[gd_scene load_steps=29 format=3 uid="uid://d2r8vd0iljo6g"]
 
 [ext_resource type="Texture2D" uid="uid://phnhm7ak72i0" path="res://assets/Streets of Fight files/Spritesheets/Long Hair Girl/long-hair-walk.png" id="1_y24rf"]
 [ext_resource type="AudioStream" uid="uid://bui1xt0is8wco" path="res://assets/MP3/kick_whoosh.wav" id="2_knw35"]
@@ -80,7 +80,7 @@ func _physics_process(delta):
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nayi"]
-size = Vector2(31.5, 29.5)
+size = Vector2(24, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pd8tb"]
 size = Vector2(21, 7)
@@ -90,7 +90,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Pivot/Sprite2D:frame")
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -102,50 +102,38 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Sprite2D:frame")
+tracks/1/path = NodePath("Pivot/Area2D/CollisionShape2D2:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [32]
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:disabled")
+tracks/2/path = NodePath("Pivot/Area2D/CollisionShape2D2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Vector2(31, -3)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath(".:position")
+tracks/3/path = NodePath("Pivot/Area2D/CollisionShape2D2:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(29, -3)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:shape")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("RectangleShape2D_0nayi")]
+"values": [Vector2(24, 9)]
 }
 
 [sub_resource type="Animation" id="Animation_uoqfp"]
@@ -155,7 +143,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../Sprite2D:frame")
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -171,62 +159,65 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Pivot/Sprite2D:frame")
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [16, 17, 18, 19, 20, 21]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Area2D/CollisionShape2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(31, -3)]
+}
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
+tracks/2/path = NodePath("Pivot/Area2D/CollisionShape2D2:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(29, -3)]
+"times": PackedFloat32Array(0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath(".:shape")
+tracks/3/path = NodePath("Pivot/Area2D/CollisionShape2D2:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.6),
+"times": PackedFloat32Array(0.3),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("RectangleShape2D_0nayi")]
+"update": 0,
+"values": [Vector2(27, 13)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+
+[sub_resource type="Animation" id="Animation_yvcft"]
+resource_name = "knockdown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [24, 25, 26, 27]
 }
 
 [sub_resource type="Animation" id="Animation_0otly"]
@@ -235,38 +226,50 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Pivot/Sprite2D:frame")
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": []
+"values": [32, 33, 34, 35, 34]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Sprite2D:frame")
+tracks/1/path = NodePath("Pivot/Area2D/CollisionShape2D2:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [32, 33, 34, 35]
+"values": [true, false, true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:disabled")
+tracks/2/path = NodePath("Pivot/Area2D/CollisionShape2D2:shape:size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24, 9)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Area2D/CollisionShape2D2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(23, -12.5)]
 }
 
 [sub_resource type="Animation" id="Animation_h4s67"]
@@ -276,7 +279,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../Sprite2D:frame")
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -291,6 +294,7 @@ _data = {
 "RESET": SubResource("Animation_hc6fs"),
 "idle": SubResource("Animation_uoqfp"),
 "kick": SubResource("Animation_oji7o"),
+"knockdown": SubResource("Animation_yvcft"),
 "punch": SubResource("Animation_0otly"),
 "walk": SubResource("Animation_h4s67")
 }
@@ -338,14 +342,14 @@ states/kick/position = Vector2(437, 0.754395)
 states/punch/node = SubResource("AnimationNodeAnimation_nnqhf")
 states/punch/position = Vector2(658, 0.754395)
 states/walk/node = SubResource("AnimationNodeAnimation_amei0")
-states/walk/position = Vector2(658, 99.2456)
+states/walk/position = Vector2(658, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_yfnr4"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_jwp0j"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_qsd8w"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_6lwxx"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_7r0gi"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_02ij0"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_m5xt0"), "walk", "kick", SubResource("AnimationNodeStateMachineTransition_m33be"), "walk", "punch", SubResource("AnimationNodeStateMachineTransition_ukac4")]
 graph_offset = Vector2(0, -42.2456)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ultyk"]
 
 [node name="Player2" type="CharacterBody2D"]
-position = Vector2(228, 145)
+position = Vector2(29, -3)
 collision_layer = 2
 collision_mask = 2
 motion_mode = 1
@@ -358,14 +362,14 @@ position = Vector2(3, -8)
 texture = ExtResource("1_y24rf")
 hframes = 8
 vframes = 6
-frame = 32
+frame = 8
 
 [node name="Area2D" type="Area2D" parent="Pivot"]
 collision_layer = 0
 collision_mask = 5
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Pivot/Area2D"]
-position = Vector2(29, -3)
+position = Vector2(31, -3)
 shape = SubResource("RectangleShape2D_0nayi")
 disabled = true
 
@@ -374,13 +378,12 @@ position = Vector2(2, 21)
 shape = SubResource("RectangleShape2D_pd8tb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Pivot/Area2D/CollisionShape2D2")
 libraries = {
 "": SubResource("AnimationLibrary_22ex7")
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.7, 0.7)
+position = Vector2(2, 21)
 limit_left = 0
 limit_top = 0
 limit_right = 1200
