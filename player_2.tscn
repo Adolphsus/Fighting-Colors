@@ -351,7 +351,6 @@ graph_offset = Vector2(0, -42.2456)
 [node name="Player2" type="CharacterBody2D"]
 position = Vector2(29, -3)
 collision_layer = 2
-collision_mask = 2
 motion_mode = 1
 script = SubResource("GDScript_52qv2")
 
@@ -384,10 +383,12 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, 21)
+enabled = false
 limit_left = 0
 limit_top = 0
 limit_right = 1200
 limit_bottom = 240
+editor_draw_screen = false
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_8lxx5")
