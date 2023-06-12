@@ -14,9 +14,10 @@ enum {RED, BLUE, NONE}
 var color = NONE
 
 #variables de navegación
-var movement_speed: float = 40.0
-@export var target1: CharacterBody2D
-@export var target2: CharacterBody2D
+@onready var players = get_tree().get_nodes_in_group("Players")
+@onready var target1 = players[1]
+@onready var target2 = players[2]
+@onready var movement_speed: float = 40.0
 @export var navigation_agent: NavigationAgent2D
 
 # Audio

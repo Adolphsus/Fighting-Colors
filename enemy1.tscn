@@ -177,6 +177,7 @@ graph_offset = Vector2(24, 21.0309)
 size = Vector2(28, 24)
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent")]
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_27802")
 navigation_agent = NodePath("NavigationAgent2D")

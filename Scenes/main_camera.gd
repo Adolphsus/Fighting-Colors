@@ -5,8 +5,8 @@ extends Camera2D
 const LEFT = 0
 const TOP = 0
 const RIGHT = 3300
-const BOTTOM = 240
-const ZOOM = Vector2(0.7, 0.7)
+const BOTTOM = 250
+const ZOOM = Vector2(0.7, 0.6)
 
 
 func _ready():

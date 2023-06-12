@@ -1,21 +1,35 @@
 extends Area2D
 @onready var nivel = $"."
 var players = 0
-@onready var markerR = $Marker2D
-@onready var markerL = $Marker2D2
+
+#spawn_points
+@onready var point_1 = $Point1
+@onready var point_2 = $Point2
+
+@onready var enemy1 = preload("res://enemy1.tscn")
+@onready var enemy2 = preload("res://enemy_2.tscn")
+@onready var enemy3 = preload("res://enemy_3.tscn")
 
 func on_body_entered(body: Node2D):
 	players += 1
 	print(players)
+	if players == 2:
+		start()
+	
 func on_body_exited(body: Node2D):
 	players -= 1
 	print(players)
 
-func lock_camera():
-	if players == 2:
-		pass #acá se lockea la camara, se spawnean los enemigos
-		
-# Called when the node enters the scene tree for the first time.
+func start():
+	spawn(enemy1, point_1)
+	print("ola")
+
+func spawn(en, point):
+	var spawn_point = Vector2(point.position)
+	var enemy = en.instantiate()
+	enemy.position = spawn_point
+	add_child(enemy)
+
 func _ready():
 	nivel.body_entered.connect(on_body_entered)
 	nivel.body_exited.connect(on_body_exited)
