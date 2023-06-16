@@ -99,6 +99,22 @@ func take_damage(player):
 	else:
 		hit_stun.start(0.9)
 
+func update_target(target, speed):
+	movement_speed = speed
+	set_movement_target(target.position)
+	if navigation_agent.is_navigation_finished():
+		state = IDLE
+
+	var current_agent_position: Vector2 = global_position
+	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
+
+	var new_velocity: Vector2 = next_path_position - current_agent_position
+	new_velocity = new_velocity.normalized()
+	new_velocity = new_velocity * movement_speed
+
+	velocity = new_velocity
+	move_and_slide()
+
 func _physics_process(delta):
 	if state == DEATH:
 		color = NONE
@@ -114,35 +130,9 @@ func _physics_process(delta):
 		if velocity.x < 0:
 			pivot.scale.x = 1 
 		if color == RED:
-			movement_speed = 40.0
-			set_movement_target(target1.position)
-			if navigation_agent.is_navigation_finished():
-				state = IDLE
-
-			var current_agent_position: Vector2 = global_position
-			var next_path_position: Vector2 = navigation_agent.get_next_path_position()
-
-			var new_velocity: Vector2 = next_path_position - current_agent_position
-			new_velocity = new_velocity.normalized()
-			new_velocity = new_velocity * movement_speed
-
-			velocity = new_velocity
-			move_and_slide()
+			update_target(target1, 40.0)
 		if color == BLUE:
-			movement_speed = 40.0
-			set_movement_target(target2.position)
-			if navigation_agent.is_navigation_finished():
-				state = IDLE
-
-			var current_agent_position: Vector2 = global_position
-			var next_path_position: Vector2 = navigation_agent.get_next_path_position()
-
-			var new_velocity: Vector2 = next_path_position - current_agent_position
-			new_velocity = new_velocity.normalized()
-			new_velocity = new_velocity * movement_speed
-
-			velocity = new_velocity
-			move_and_slide()
+			update_target(target2, 40.0)
 	if state == IDLE:
 		playback.travel("idle")
 		
