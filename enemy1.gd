@@ -15,8 +15,13 @@ var color = NONE
 
 #variables de navegación
 @onready var players = get_tree().get_nodes_in_group("Players")
-@onready var target1 = players[1]
-@onready var target2 = players[2]
+@onready var target1 = players[0]
+@onready var target2 = players[1]
+@onready var markers = get_tree().get_nodes_in_group("Markers")
+@onready var target1R = markers[0]
+@onready var target1L = markers[1] 
+@onready var target2R = markers[2]
+@onready var target2L = markers[3]
 @onready var movement_speed: float = 40.0
 @export var navigation_agent: NavigationAgent2D
 
@@ -67,6 +72,7 @@ func set_movement_target(movement_target: Vector2):
 
 func take_damage(player):
 	var tween = create_tween()
+	print(markers)
 	if player == 'player1':
 		if color ==RED or color == NONE:
 			state = HURT

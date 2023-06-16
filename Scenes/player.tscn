@@ -534,3 +534,9 @@ stream = ExtResource("2_v4hsc")
 
 [node name="punch" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_waov0")
+
+[node name="Marker P1 R" type="Marker2D" parent="." groups=["Markers"]]
+position = Vector2(25, 22)
+
+[node name="Marker P1 L" type="Marker2D" parent="." groups=["Markers"]]
+position = Vector2(-25, 22)
