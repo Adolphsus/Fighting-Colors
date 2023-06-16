@@ -1619,7 +1619,7 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uaik4"]
 normal = Vector2(-1, 0)
 
-[node name="main" type="Node2D" groups=["Enemies", "Players"]]
+[node name="main" type="Node2D" groups=["Camera", "Enemies", "Players"]]
 metadata/_edit_horizontal_guides_ = [77.0]
 
 [node name="Background" type="Node2D" parent="."]
@@ -1725,7 +1725,7 @@ position = Vector2(969, 124)
 position = Vector2(736, 136)
 navigation_polygon = SubResource("NavigationPolygon_32fjs")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["Camera"]]
 position = Vector2(0, 14)
 zoom = Vector2(0.7, 0.6)
 limit_left = 0
@@ -1756,6 +1756,3 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/physic limits/StaticBody2D2"]
 shape = SubResource("WorldBoundaryShape2D_uaik4")
-
-[node name="Marker2D" type="Marker2D" parent="Camera2D"]
-position = Vector2(8, 225)
