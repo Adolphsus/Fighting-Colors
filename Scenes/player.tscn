@@ -26,6 +26,10 @@ var combo_step = 0
 @onready var audio_stream_player_kick = $kick
 @onready var audio_stream_player_punch = $punch
 
+#Vida
+const Max_health = 200
+var health = 200
+
 func on_area_entered(area: Node):
 	if area.get_parent().has_method(\"take_damage\"):
 		area.get_parent().take_damage('player1')
@@ -58,16 +62,16 @@ func reset_movement(anim_name): #agregar a lista de \"ifs\" si queremos agregar 
 		can_move = true
 
 func attacks():
-	if Input.is_action_just_pressed(\"punch\"):
-		set_deferred(\"can_move\", false)
-		playback.call_deferred(\"travel\", \"punch\")
-		audio_stream_player_punch.play()
-	elif Input.is_action_just_pressed(\"kick\"):
-		set_deferred(\"can_move\", false)
-		playback.call_deferred(\"travel\", \"kick\")
-		audio_stream_player_kick.play()
-		
-		
+	if can_move:
+		if Input.is_action_just_pressed(\"punch\"):
+			set_deferred(\"can_move\", false)
+			playback.call_deferred(\"travel\", \"punch\")
+			audio_stream_player_punch.play()
+		elif Input.is_action_just_pressed(\"kick\"):
+			set_deferred(\"can_move\", false)
+			playback.call_deferred(\"travel\", \"kick\")
+			audio_stream_player_kick.play()
+
 func _physics_process(delta):
 	attacks()
 	if can_move:
@@ -77,6 +81,9 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 	if velocity.x == 0 and velocity.y == 0:
 		playback.travel(\"idle\")
+#	if health <= 0:
+#		playback.travel(\"huh\")
+#		can_move = false
 
 
 	move_and_slide()

@@ -60,6 +60,7 @@ func _ready():
 	
 	hit_stun.timeout.connect(seek_player)
 
+#setea el target seguido
 func set_target(player):
 	if player == "player1" and abs(target1L.global_position - self.global_position) < abs(target1R.global_position - self.global_position):
 		return target1L
@@ -69,16 +70,17 @@ func set_target(player):
 		return target2L
 	elif player == "player2" and abs(target2L.global_position - self.global_position) >= abs(target2R.global_position - self.global_position):
 		return target2R
-	
-func actor_setup():
-	# Wait for the first physics frame so the NavigationServer can sync.
-	await get_tree().physics_frame
-	# Now that the navigation map is no longer empty, set the movement target.
-	set_movement_target(target1.position)
 
 #setea la posición del target al que va a llegar
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
+
+func actor_setup():
+	# Wait for the first physics frame so the NavigationServer can sync.
+	await get_tree().physics_frame
+	# Now that the navigation map is no longer empty, set the movement target.
+	set_movement_target(set_target("player1").position)
+
 
 func take_damage(player):
 	var tween = create_tween()
