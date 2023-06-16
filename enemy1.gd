@@ -60,6 +60,16 @@ func _ready():
 	
 	hit_stun.timeout.connect(seek_player)
 
+func set_target(player):
+	if player == "player1" and abs(target1L.global_position - self.global_position) < abs(target1R.global_position - self.global_position):
+		return target1L
+	elif player == "player1" and abs(target1L.global_position - self.global_position) >= abs(target1R.global_position - self.global_position):
+		return target1R
+	elif player == "player2" and abs(target2L.global_position - self.global_position) < abs(target2R.global_position - self.global_position):
+		return target2L
+	elif player == "player2" and abs(target2L.global_position - self.global_position) >= abs(target2R.global_position - self.global_position):
+		return target2R
+	
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
 	await get_tree().physics_frame
@@ -107,7 +117,7 @@ func take_damage(player):
 
 func update_target(target, speed):
 	movement_speed = speed
-	set_movement_target(target.position)
+	set_movement_target(target.global_position)
 	if navigation_agent.is_navigation_finished():
 		state = IDLE
 
@@ -136,9 +146,10 @@ func _physics_process(delta):
 		if velocity.x < 0:
 			pivot.scale.x = 1 
 		if color == RED:
-			update_target(target1, 40.0)
+			update_target(set_target("player1"), 40.0)
 		if color == BLUE:
-			update_target(target2, 40.0)
+			var a = set_target("player2")
+			update_target(set_target("player2"), 40.0)
 	if state == IDLE:
 		playback.travel("idle")
 		
