@@ -85,9 +85,6 @@ func _physics_process(delta):
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nayi"]
 size = Vector2(26.0572, 13)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1033i"]
-size = Vector2(22, 36)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pd8tb"]
 size = Vector2(21, 7)
 
@@ -489,6 +486,9 @@ graph_offset = Vector2(-76, -54.2456)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_lrwkw"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1033i"]
+size = Vector2(22, 36)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 motion_mode = 1
@@ -511,13 +511,6 @@ collision_mask = 5
 position = Vector2(26, -8)
 shape = SubResource("RectangleShape2D_0nayi")
 disabled = true
-
-[node name="Hurtbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-1, -2)
-shape = SubResource("RectangleShape2D_1033i")
-debug_color = Color(1, 0.0117647, 0.0235294, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 22)
@@ -562,3 +555,10 @@ position = Vector2(25, -8)
 
 [node name="Marker P1 L" type="Marker2D" parent="." groups=["Markers"]]
 position = Vector2(-25, -8)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-1, -2)
+shape = SubResource("RectangleShape2D_1033i")
+debug_color = Color(1, 0.0117647, 0.0235294, 0.419608)

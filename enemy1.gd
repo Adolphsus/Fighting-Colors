@@ -82,7 +82,6 @@ func set_movement_target(movement_target: Vector2):
 
 func take_damage(player):
 	var tween = create_tween()
-	print(markers)
 	if player == 'player1':
 		if color ==RED or color == NONE:
 			state = HURT
