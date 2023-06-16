@@ -405,7 +405,7 @@ stream = ExtResource("2_knw35")
 stream = ExtResource("3_602b7")
 
 [node name="Marker P2 R" type="Marker2D" parent="." groups=["Markers"]]
-position = Vector2(25, 21)
+position = Vector2(25, -8)
 
 [node name="Marker P2 L" type="Marker2D" parent="." groups=["Markers"]]
-position = Vector2(-21, 21)
+position = Vector2(-21, -8)

@@ -53,8 +53,8 @@ func _ready():
 	# PATHFINDING
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
-	navigation_agent.path_desired_distance = 10.0
-	navigation_agent.target_desired_distance = 10.0
+	navigation_agent.path_desired_distance = 1.5
+	navigation_agent.target_desired_distance = 1.5
 	# Make sure to not await during _ready.
 	call_deferred("actor_setup")
 	
