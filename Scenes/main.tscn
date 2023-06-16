@@ -1651,6 +1651,8 @@ layer_0/tile_data = PackedInt32Array(0, 1179648, 0, 65536, 1179648, 1, 131072, 1
 script = ExtResource("3_vsd4v")
 
 [node name="poste" type="Sprite2D" parent="Background"]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(123, 35)
 texture = ExtResource("2_5gkjw")
 offset = Vector2(16, 46)
