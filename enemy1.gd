@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
-#@onready var hurt_box = $HurtBox
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
 @onready var playback = animation_tree.get("parameters/playback")
 @onready var progress_bar = $MarginContainer/ProgressBar
 @onready var sprite_2d = $Pivot/Sprite2D
-@onready var hit_stun = $Hit_stun
+@onready var still_time = $Still_time
 @onready var pivot = $Pivot
+@onready var cd = $CD
+@onready var hitbox = $Pivot/Hitbox
 
 #Color actual
 enum {RED, BLUE, NONE}
@@ -29,7 +30,7 @@ var color = NONE
 @onready var audio_stream_player_hurt = $hurt
 @onready var audio_stream_player_grunt = $grunt
 
-#vida y barra de vida
+#stats
 const Max_health = 200
 var health = 200:
 	set(value):
@@ -37,13 +38,15 @@ var health = 200:
 		progress_bar.value = value
 	get:
 		return health
+		
+const damage = 20
 
 #estados de la IA
 enum { SEEK,
 ATTACK,
 DEATH,
 IDLE,
-HURT
+STILL
 }
 var state = IDLE
 
@@ -58,7 +61,8 @@ func _ready():
 	# Make sure to not await during _ready.
 	call_deferred("actor_setup")
 	
-	hit_stun.timeout.connect(seek_player)
+	still_time.timeout.connect(seek_player)
+	hitbox.area_entered.connect(on_area_entered)
 
 func set_target(player):
 	if player == "player1" and abs(target1L.global_position - self.global_position) < abs(target1R.global_position - self.global_position):
@@ -84,7 +88,7 @@ func take_damage(player):
 	var tween = create_tween()
 	if player == 'player1':
 		if color ==RED or color == NONE:
-			state = HURT
+			state = STILL
 			health = max(health - 25, 0)
 			audio_stream_player_hurt.play()
 			playback.travel("hurt")
@@ -92,11 +96,12 @@ func take_damage(player):
 			tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
 			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
 			tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
-			tween.tween_callback($Pivot/Sprite2D.set_modulate.bind(Color.BLUE)).set_delay(0.5)
+			tween.tween_callback($Pivot/Sprite2D.set_modulate.bind(Color.BLUE))
 			color = BLUE
+			still_time.start(0.9)
 	if player == 'player2':
 		if color == BLUE or color == NONE:
-			state = HURT
+			state = STILL
 			health = max(health - 25, 0)
 			audio_stream_player_hurt.play()
 			playback.travel("hurt")
@@ -104,21 +109,22 @@ func take_damage(player):
 			tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
 			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
 			tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
-			tween.tween_callback($Pivot/Sprite2D.set_modulate.bind(Color.RED)).set_delay(0.5)
+			tween.tween_callback($Pivot/Sprite2D.set_modulate.bind(Color.RED))
 			color = RED
+			still_time.start(0.9)
 	if health == 0:
 		audio_stream_player_grunt.play()
 		playback.travel("knockdown")
 		state = DEATH
-		hit_stun.stop()
-	else:
-		hit_stun.start(0.9)
+		still_time.stop()
 
 func update_target(target, speed):
 	movement_speed = speed
 	set_movement_target(target.global_position)
 	if navigation_agent.is_navigation_finished():
-		state = IDLE
+		playback.travel("punch")
+		state = STILL
+		still_time.start(2.5)
 
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
@@ -130,13 +136,17 @@ func update_target(target, speed):
 	velocity = new_velocity
 	move_and_slide()
 
+func on_area_entered(area: Node):
+	if area.get_parent().has_method("take_damage_player"):
+		area.get_parent().take_damage_player(damage)
+
 func _physics_process(delta):
 	if state == DEATH:
 		color = NONE
 		movement_speed = 0
 		await get_tree().create_timer(2.0).timeout
 		queue_free()
-	if state == HURT:
+	if state == STILL:
 		movement_speed = 0
 	if state == SEEK:
 		playback.travel("walk")
@@ -151,7 +161,6 @@ func _physics_process(delta):
 			update_target(set_target("player2"), 40.0)
 	if state == IDLE:
 		playback.travel("idle")
-		
 
 func seek_player():
 	state = SEEK

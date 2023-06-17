@@ -1,9 +1,12 @@
-[gd_scene load_steps=32 format=3 uid="uid://ctiurf10vk1ym"]
+[gd_scene load_steps=34 format=3 uid="uid://ctiurf10vk1ym"]
 
 [ext_resource type="Script" path="res://enemy1.gd" id="1_27802"]
 [ext_resource type="Texture2D" uid="uid://dtu6p7mcquvbx" path="res://assets/Streets of Fight files/Spritesheets/Enemy Punk/all movement enemy1.png" id="2_2rl65"]
 [ext_resource type="AudioStream" uid="uid://bfna6g1o16fbu" path="res://assets/MP3/body_hit.wav" id="3_4vcfx"]
 [ext_resource type="AudioStream" uid="uid://bno1ssgs75k4p" path="res://assets/MP3/Male Grunt-SoundBible.com-68178715.mp3" id="4_hxyi5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yvni"]
+size = Vector2(19, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggwkn"]
 size = Vector2(21, 7)
@@ -25,7 +28,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -100,7 +103,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -165,10 +168,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ro781"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c7kpe"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ru345"]
 switch_mode = 2
 advance_mode = 2
@@ -178,6 +177,14 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kn386"]
 switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yn2rn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ccpqt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_suvjq"]
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ypha6"]
 states/End/position = Vector2(914, 186)
@@ -191,14 +198,11 @@ states/knockdown/position = Vector2(736, 186)
 states/punch/node = SubResource("AnimationNodeAnimation_uwq7c")
 states/punch/position = Vector2(377, 66)
 states/walk/node = SubResource("AnimationNodeAnimation_gg3it")
-states/walk/position = Vector2(377, 321)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3pkrm"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_qp7uw"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_uustt"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_07exw"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_q1xh4"), "idle", "knockdown", SubResource("AnimationNodeStateMachineTransition_ro781"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_c7kpe"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_ru345"), "knockdown", "idle", SubResource("AnimationNodeStateMachineTransition_8siwf"), "knockdown", "End", SubResource("AnimationNodeStateMachineTransition_kn386")]
-graph_offset = Vector2(24, 21.0309)
+states/walk/position = Vector2(508, 297)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3pkrm"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_qp7uw"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_uustt"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_07exw"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_q1xh4"), "idle", "knockdown", SubResource("AnimationNodeStateMachineTransition_ro781"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_ru345"), "knockdown", "idle", SubResource("AnimationNodeStateMachineTransition_8siwf"), "knockdown", "End", SubResource("AnimationNodeStateMachineTransition_kn386"), "punch", "hurt", SubResource("AnimationNodeStateMachineTransition_yn2rn"), "walk", "punch", SubResource("AnimationNodeStateMachineTransition_ccpqt"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_suvjq")]
+graph_offset = Vector2(9, 45.7262)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_0sk2y"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yvni"]
-size = Vector2(19, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryxtj"]
 size = Vector2(28, 24)
@@ -215,6 +219,13 @@ navigation_agent = NodePath("NavigationAgent2D")
 texture = ExtResource("2_2rl65")
 hframes = 4
 vframes = 4
+
+[node name="Hitbox" type="Area2D" parent="Pivot"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hitbox"]
+position = Vector2(-28.5, -1.5)
+shape = SubResource("RectangleShape2D_2yvni")
+disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 27)
@@ -247,7 +258,7 @@ show_percentage = false
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
 
-[node name="Hit_stun" type="Timer" parent="."]
+[node name="Still_time" type="Timer" parent="."]
 wait_time = 1.147
 one_shot = true
 
@@ -256,13 +267,6 @@ stream = ExtResource("3_4vcfx")
 
 [node name="grunt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hxyi5")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-28.5, -1.5)
-shape = SubResource("RectangleShape2D_2yvni")
-disabled = true
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 4
