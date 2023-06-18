@@ -1,12 +1,29 @@
-[gd_scene load_steps=34 format=3 uid="uid://ctiurf10vk1ym"]
+[gd_scene load_steps=37 format=3 uid="uid://ctiurf10vk1ym"]
 
 [ext_resource type="Script" path="res://enemy1.gd" id="1_27802"]
 [ext_resource type="Texture2D" uid="uid://dtu6p7mcquvbx" path="res://assets/Streets of Fight files/Spritesheets/Enemy Punk/all movement enemy1.png" id="2_2rl65"]
 [ext_resource type="AudioStream" uid="uid://bfna6g1o16fbu" path="res://assets/MP3/body_hit.wav" id="3_4vcfx"]
+[ext_resource type="Theme" uid="uid://ch881euxht8j4" path="res://resources/health_bar_theme.tres" id="3_eegh6"]
 [ext_resource type="AudioStream" uid="uid://bno1ssgs75k4p" path="res://assets/MP3/Male Grunt-SoundBible.com-68178715.mp3" id="4_hxyi5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yvni"]
 size = Vector2(19, 15)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxdhl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_437b7"]
+bg_color = Color(1, 0, 0, 0.784314)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggwkn"]
 size = Vector2(21, 7)
@@ -219,6 +236,7 @@ navigation_agent = NodePath("NavigationAgent2D")
 texture = ExtResource("2_2rl65")
 hframes = 4
 vframes = 4
+frame = 3
 
 [node name="Hitbox" type="Area2D" parent="Pivot"]
 
@@ -226,6 +244,32 @@ vframes = 4
 position = Vector2(-28.5, -1.5)
 shape = SubResource("RectangleShape2D_2yvni")
 disabled = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -21.0
+offset_top = -31.0
+offset_right = 20.0
+offset_bottom = -18.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("3_eegh6")
+theme_override_styles/background = SubResource("StyleBoxFlat_lxdhl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_437b7")
+max_value = 200.0
+value = 100.0
+show_percentage = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 27)
@@ -241,19 +285,6 @@ tree_root = SubResource("AnimationNodeStateMachine_ypha6")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_0sk2y")
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-offset_left = -18.0
-offset_top = -24.0
-offset_right = 12.0
-offset_bottom = -14.0
-size_flags_horizontal = 0
-
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer"]
-modulate = Color(0.878431, 0, 0, 1)
-layout_mode = 2
-max_value = 200.0
-show_percentage = false
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true

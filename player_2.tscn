@@ -30,6 +30,7 @@ var combo_step = 0
 @onready var audio_stream_player_punch = $punch
 
 #vida y barra de vida
+@onready var health_bar = $\"../../../CanvasLayer/MarginContainer/HBoxContainer/ProgressBar2\"
 const Max_health = 200
 var health = 200
 
@@ -40,6 +41,7 @@ func on_area_entered(area: Node):
 func _ready():
 	animation_tree.animation_finished.connect(reset_movement)
 	hitbox.area_entered.connect(on_area_entered)
+	health_bar.value = Max_health
 
 #movement
 func get_H():
@@ -78,6 +80,7 @@ func attacks():
 
 func take_damage_player(damage):
 	health = max(health - damage, 0)
+	health_bar.value = health
 	if health == 0:
 		can_move = false
 		#acá va death
