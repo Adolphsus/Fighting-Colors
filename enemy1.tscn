@@ -236,7 +236,6 @@ navigation_agent = NodePath("NavigationAgent2D")
 texture = ExtResource("2_2rl65")
 hframes = 4
 vframes = 4
-frame = 3
 
 [node name="Hitbox" type="Area2D" parent="Pivot"]
 
