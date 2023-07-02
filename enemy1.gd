@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+#Variables propias
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
 @onready var playback = animation_tree.get("parameters/playback")
@@ -25,6 +26,10 @@ var color = NONE
 @onready var target2L = markers[3]
 @onready var movement_speed: float = 40.0
 @export var navigation_agent: NavigationAgent2D
+
+#Niveles
+@onready var levels = get_tree().get_nodes_in_group("Levels")
+@onready var current_level = levels[0]
 
 # Audio
 @onready var audio_stream_player_hurt = $hurt
@@ -117,7 +122,7 @@ func take_damage(player):
 		playback.travel("knockdown")
 		state = DEATH
 		still_time.stop()
-
+		
 func update_target(target, speed):
 	movement_speed = speed
 	set_movement_target(target.global_position)
@@ -145,6 +150,7 @@ func _physics_process(delta):
 		color = NONE
 		movement_speed = 0
 		await get_tree().create_timer(2.0).timeout
+		current_level.end()
 		queue_free()
 	if state == STILL:
 		movement_speed = 0

@@ -1732,7 +1732,7 @@ target = NodePath("../../../Players/Player2")
 position = Vector2(296, 99)
 target = NodePath("../../../Players/Player")
 
-[node name="Nivel" type="Area2D" parent="."]
+[node name="Nivel" type="Area2D" parent="." groups=["Levels"]]
 collision_layer = 0
 collision_mask = 6
 monitorable = false

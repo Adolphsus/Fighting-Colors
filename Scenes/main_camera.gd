@@ -13,6 +13,7 @@ func limits(x, y):
 	tween.tween_property(self, "limit_left", x, 2.5)
 	tween.tween_property(self, "limit_right", y, 2.5)
 	pass
+	
 func _ready():
 	Game.camera = self
 	pass # Replace with function body.

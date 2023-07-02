@@ -12,6 +12,9 @@ var players = 0
 
 var limitL = 540
 var limitR = 1010
+var contador = 0
+var limitRfinal = 3250
+var cleared = false
 
 func on_body_entered(body: Node2D):
 	players += 1
@@ -24,10 +27,19 @@ func on_body_exited(body: Node2D):
 	print(players)
 
 func start():
-	spawn(enemy1, point_1)
-	print("ola")
-	if Game.camera:
-		Game.camera.limits(limitL, limitR)
+	if not cleared:
+		spawn(enemy1, point_1)
+		spawn(enemy1, point_2)
+		if Game.camera:
+			Game.camera.limits(limitL, limitR)
+		
+func end():
+	contador +=1
+	print(contador)
+	if contador == 2:
+		Game.camera.limits(limitL, limitRfinal)
+		cleared = true
+		print('funciono')
 
 func spawn(en, point):
 	var spawn_point = Vector2(point.position)
