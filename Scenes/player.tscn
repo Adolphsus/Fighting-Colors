@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bktn544wckokf"]
+[gd_scene load_steps=39 format=3 uid="uid://bktn544wckokf"]
 
 [ext_resource type="Texture2D" uid="uid://bklj6p80cnjj8" path="res://assets/Streets of Fight files/Spritesheets/Brawler Girl/all movement.png" id="1_3qgph"]
 [ext_resource type="AudioStream" uid="uid://bui1xt0is8wco" path="res://assets/MP3/kick_whoosh.wav" id="2_v4hsc"]
@@ -59,8 +59,6 @@ func get_V():
 		playback.travel(\"walk\")
 	else:
 		velocity.y = 0
-		
-
 
 #attacks
 func attacks():
@@ -77,9 +75,9 @@ func take_damage_player(damage):
 	health_bar.value = health
 	if health == 0:
 		#acá va death
-		playback.travel(\"hurt\")
+		playback.call_deferred(\"travel\", \"knockdown\")
 	else:
-		playback.travel(\"hurt\")
+		playback.call_deferred(\"travel\", \"hurt\")
 
 func _physics_process(delta):
 	attacks()
@@ -215,6 +213,7 @@ tracks/8/keys = {
 [sub_resource type="Animation" id="Animation_h1pny"]
 resource_name = "hurt"
 length = 0.5
+step = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -234,10 +233,10 @@ tracks/1/path = NodePath(".:can_move")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.499),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_ckfdv"]
@@ -374,6 +373,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [10, 11, 12, 13]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:can_move")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_7vg3e"]
@@ -514,6 +525,9 @@ animation = &"idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xsq5p"]
 animation = &"kick"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_76ln3"]
+animation = &"knockdown"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5igbn"]
 animation = &"punch"
 
@@ -549,6 +563,8 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3ltq8"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7nosu"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8lxx5"]
 states/hurt/node = SubResource("AnimationNodeAnimation_mkxuo")
 states/hurt/position = Vector2(433, 225.754)
@@ -556,12 +572,14 @@ states/idle/node = SubResource("AnimationNodeAnimation_rpbee")
 states/idle/position = Vector2(433, 100)
 states/kick/node = SubResource("AnimationNodeAnimation_xsq5p")
 states/kick/position = Vector2(662, -14.2456)
+states/knockdown/node = SubResource("AnimationNodeAnimation_76ln3")
+states/knockdown/position = Vector2(646, 225.754)
 states/punch/node = SubResource("AnimationNodeAnimation_5igbn")
 states/punch/position = Vector2(433, -14.2456)
 states/walk/node = SubResource("AnimationNodeAnimation_1jk7f")
 states/walk/position = Vector2(662, 100)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ni8ju"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_fm1el"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_1cltm"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_q1jce"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_f4a53"), "walk", "punch", SubResource("AnimationNodeStateMachineTransition_ua5i7"), "walk", "kick", SubResource("AnimationNodeStateMachineTransition_higfs"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_a7l0m"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_vs4ja"), "kick", "walk", SubResource("AnimationNodeStateMachineTransition_1xx53"), "punch", "walk", SubResource("AnimationNodeStateMachineTransition_ixpfw"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_a8ajf"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_3ltq8")]
-graph_offset = Vector2(5, 28.3638)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ni8ju"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_fm1el"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_1cltm"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_q1jce"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_f4a53"), "walk", "punch", SubResource("AnimationNodeStateMachineTransition_ua5i7"), "walk", "kick", SubResource("AnimationNodeStateMachineTransition_higfs"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_a7l0m"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_vs4ja"), "kick", "walk", SubResource("AnimationNodeStateMachineTransition_1xx53"), "punch", "walk", SubResource("AnimationNodeStateMachineTransition_ixpfw"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_a8ajf"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_3ltq8"), "idle", "knockdown", SubResource("AnimationNodeStateMachineTransition_7nosu")]
+graph_offset = Vector2(5, 14.5956)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_lrwkw"]
 
@@ -580,7 +598,7 @@ position = Vector2(3, -8)
 texture = ExtResource("1_3qgph")
 hframes = 10
 vframes = 9
-frame = 33
+frame = 32
 
 [node name="Hitbox" type="Area2D" parent="Pivot"]
 collision_layer = 0

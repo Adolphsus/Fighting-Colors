@@ -39,7 +39,7 @@ var health = 200:
 	get:
 		return health
 		
-const damage = 20
+const damage = 50
 
 #estados de la IA
 enum { SEEK,
