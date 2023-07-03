@@ -66,13 +66,13 @@ func attacks():
 		if Input.is_action_just_pressed(\"punch\") and combo_step == 0:
 			playback.call_deferred(\"travel\", \"punch\")
 			audio_stream_player_punch.play()
-		elif Input.is_action_just_pressed(\"punch\") and combo_step == 1:
-			playback.call_deferred(\"travel\",\"punch2\")
-		elif Input.is_action_just_pressed(\"punch\") and combo_step == 2:
-			playback.call_deferred(\"travel\",\"punch2\")
 		elif Input.is_action_just_pressed(\"kick\"):
 			playback.call_deferred(\"travel\", \"kick\")
 			audio_stream_player_kick.play()
+	if Input.is_action_just_pressed(\"punch\") and combo_step == 1:
+		playback.call_deferred(\"travel\",\"punch2\")
+	if Input.is_action_just_pressed(\"punch\") and combo_step == 2:
+		playback.call_deferred(\"travel\",\"finisher\")
 
 func take_damage_player(damage):
 	health = max(health - damage, 0)
@@ -289,6 +289,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(15.5, -8)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:can_move")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_h1pny"]
@@ -786,7 +798,7 @@ states/punch2/position = Vector2(595, -144.98)
 states/walk/node = SubResource("AnimationNodeAnimation_1jk7f")
 states/walk/position = Vector2(997, 137)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ni8ju"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_fm1el"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_1cltm"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_q1jce"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_f4a53"), "walk", "punch", SubResource("AnimationNodeStateMachineTransition_ua5i7"), "walk", "kick", SubResource("AnimationNodeStateMachineTransition_higfs"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_a7l0m"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_vs4ja"), "kick", "walk", SubResource("AnimationNodeStateMachineTransition_1xx53"), "punch", "walk", SubResource("AnimationNodeStateMachineTransition_ixpfw"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_a8ajf"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_3ltq8"), "idle", "knockdown", SubResource("AnimationNodeStateMachineTransition_7nosu"), "punch", "hurt", SubResource("AnimationNodeStateMachineTransition_n1ogx"), "kick", "hurt", SubResource("AnimationNodeStateMachineTransition_cgix0"), "walk", "hurt", SubResource("AnimationNodeStateMachineTransition_mahw0"), "hurt", "knockdown", SubResource("AnimationNodeStateMachineTransition_m2plv"), "punch", "knockdown", SubResource("AnimationNodeStateMachineTransition_ysd53"), "kick", "knockdown", SubResource("AnimationNodeStateMachineTransition_aqb1k"), "walk", "knockdown", SubResource("AnimationNodeStateMachineTransition_scyuh"), "punch", "punch2", SubResource("AnimationNodeStateMachineTransition_0wcya"), "punch2", "finisher", SubResource("AnimationNodeStateMachineTransition_8tkrq"), "punch2", "hurt", SubResource("AnimationNodeStateMachineTransition_mkayn"), "punch2", "knockdown", SubResource("AnimationNodeStateMachineTransition_yl3ii"), "punch2", "idle", SubResource("AnimationNodeStateMachineTransition_vimqq"), "finisher", "hurt", SubResource("AnimationNodeStateMachineTransition_vwrww"), "finisher", "knockdown", SubResource("AnimationNodeStateMachineTransition_0nkno"), "finisher", "idle", SubResource("AnimationNodeStateMachineTransition_w5b7m"), "punch2", "walk", SubResource("AnimationNodeStateMachineTransition_ncysa"), "finisher", "walk", SubResource("AnimationNodeStateMachineTransition_4kmij")]
-graph_offset = Vector2(-128.923, -186.962)
+graph_offset = Vector2(103.077, -192.962)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_lrwkw"]
 
