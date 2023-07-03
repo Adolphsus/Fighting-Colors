@@ -127,6 +127,10 @@ func update_target(target, speed):
 	movement_speed = speed
 	set_movement_target(target.global_position)
 	if navigation_agent.is_navigation_finished():
+		if target == target1R or target == target2R:
+			pivot.scale.x = 1
+		elif target == target1L or target == target2L:
+			pivot.scale.x = -1
 		playback.travel("punch")
 		state = STILL
 		still_time.start(2.5)
