@@ -8,8 +8,8 @@ extends CharacterBody2D
 @onready var sprite_2d = $Pivot/Sprite2D
 @onready var still_time = $Still_time
 @onready var pivot = $Pivot
-@onready var cd = $CD
 @onready var hitbox = $Pivot/Hitbox
+@onready var color_change = $Color_change
 
 #Color actual
 enum {RED, BLUE, NONE}
@@ -68,6 +68,7 @@ func _ready():
 	
 	still_time.timeout.connect(seek_player)
 	hitbox.area_entered.connect(on_area_entered)
+	color_change.timeout.connect(color_change_func)
 
 func set_target(player):
 	if player == "player1" and abs(target1L.global_position - self.global_position) < abs(target1R.global_position - self.global_position):
@@ -99,6 +100,7 @@ func take_damage(player):
 			playback.travel("hurt")
 			tween_hit()
 			still_time.start(0.9)
+			color_change.start(0.9)
 
 	if player == 'player2':
 		if color == BLUE or color == NONE:
@@ -109,11 +111,13 @@ func take_damage(player):
 			playback.travel("hurt")
 			tween_hit()
 			still_time.start(0.9)
+			color_change.start(0.9)
 	if health == 0:
 		audio_stream_player_grunt.play()
 		playback.travel("knockdown")
 		state = DEATH
 		still_time.stop()
+		color_change.stop()
 
 func tween_hit():
 	var tween = create_tween()
@@ -173,9 +177,10 @@ func _physics_process(delta):
 
 func seek_player():
 	state = SEEK
+
+func color_change_func():
 	var tween = create_tween()
 	if color == RED:
-		print("color: RED")
 		tween.tween_callback($Pivot/Sprite2D.set_modulate.bind(Color.BLUE))
 		color = BLUE
 	elif color == BLUE:

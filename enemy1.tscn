@@ -292,6 +292,9 @@ debug_enabled = true
 wait_time = 1.147
 one_shot = true
 
+[node name="Color_change" type="Timer" parent="."]
+one_shot = true
+
 [node name="hurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_4vcfx")
 
