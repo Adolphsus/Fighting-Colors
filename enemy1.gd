@@ -90,39 +90,38 @@ func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
 func take_damage(player):
-	var tween = create_tween()
 	if player == 'player1':
-		if color ==RED or color == NONE:
+		if color == RED or color == NONE:
+			color = RED
 			state = STILL
 			health = max(health - 25, 0)
 			audio_stream_player_hurt.play()
 			playback.travel("hurt")
-			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
-			tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
-			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
-			tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
-			tween.tween_callback($Pivot/Sprite2D.set_modulate.bind(Color.BLUE))
-			color = BLUE
+			tween_hit()
 			still_time.start(0.9)
+
 	if player == 'player2':
 		if color == BLUE or color == NONE:
+			color = BLUE
 			state = STILL
 			health = max(health - 25, 0)
 			audio_stream_player_hurt.play()
 			playback.travel("hurt")
-			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
-			tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
-			tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
-			tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
-			tween.tween_callback($Pivot/Sprite2D.set_modulate.bind(Color.RED))
-			color = RED
+			tween_hit()
 			still_time.start(0.9)
 	if health == 0:
 		audio_stream_player_grunt.play()
 		playback.travel("knockdown")
 		state = DEATH
 		still_time.stop()
-		
+
+func tween_hit():
+	var tween = create_tween()
+	tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+	tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
+	tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
+	tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+
 func update_target(target, speed):
 	movement_speed = speed
 	set_movement_target(target.global_position)
@@ -174,3 +173,11 @@ func _physics_process(delta):
 
 func seek_player():
 	state = SEEK
+	var tween = create_tween()
+	if color == RED:
+		print("color: RED")
+		tween.tween_callback($Pivot/Sprite2D.set_modulate.bind(Color.BLUE))
+		color = BLUE
+	elif color == BLUE:
+		tween.tween_callback($Pivot/Sprite2D.set_modulate.bind(Color.RED))
+		color = RED
