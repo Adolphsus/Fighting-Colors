@@ -33,6 +33,7 @@ var combo_step = 0
 @onready var health_bar = $\"../../../CanvasLayer/MarginContainer/HBoxContainer/ProgressBar2\"
 const Max_health = 200
 var health = 200
+@export var alive = true
 
 func on_area_entered(area: Node):
 	if area.get_parent().has_method(\"take_damage\"):
@@ -76,6 +77,7 @@ func take_damage_player(damage):
 	if health == 0:
 		#acá va death
 		playback.call_deferred(\"travel\",\"knockdown\")
+		alive = false
 	else:
 		playback.call_deferred(\"travel\",\"hurt\")
 		print(\"ola\")
