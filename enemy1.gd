@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 #Variables propias
+@onready var character = $"."
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
 @onready var playback = animation_tree.get("parameters/playback")
@@ -61,8 +62,8 @@ func _ready():
 	# PATHFINDING
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
-	navigation_agent.path_desired_distance = 1.5
-	navigation_agent.target_desired_distance = 1.5
+	navigation_agent.path_desired_distance = 1.0
+	navigation_agent.target_desired_distance = 1.0
 	# Make sure to not await during _ready.
 	call_deferred("actor_setup")
 	
@@ -103,6 +104,8 @@ func take_damage(player, damage):
 				still_time.start(0.8)
 				color_change.start(0.4)
 			if damage == 20:
+				pivot.scale.x = target1.pivot.scale.x
+				tween_knockback(pivot.scale.x*50.0)
 				playback.travel("knockback")
 				tween_hit()
 				still_time.start(1.5)
@@ -113,11 +116,21 @@ func take_damage(player, damage):
 				still_time.start(0.8)
 				color_change.start(0.5)
 			if damage == 50:
-				playback.travel("hurt")
+				pivot.scale.x = target1.pivot.scale.x
+				tween_knockback(pivot.scale.x*30.0)
+				playback.travel("knockback")
 				tween_hit()
 				still_time.start(1.0)
 				color_change.start(0.01)
-
+		else:
+			if damage == 20:
+				state = STILL
+				pivot.scale.x = target1.pivot.scale.x
+				tween_knockback(pivot.scale.x*50.0)
+				playback.travel("knockback")
+				tween_hit()
+				still_time.start(1.5)
+		
 	if player == 'player2':
 		if color == BLUE or color == NONE:
 			color = BLUE
@@ -130,16 +143,28 @@ func take_damage(player, damage):
 				still_time.start(0.8)
 				color_change.start(0.4)
 			if damage == 20:
+				pivot.scale.x = target2.pivot.scale.x
+				tween_knockback(pivot.scale.x*50.0)
 				playback.travel("knockback")
 				tween_hit()
 				still_time.start(1.5)
 				color_change.start(0.01)
 			if damage == 70:
-				playback.travel("hurt")
+				pivot.scale.x = target2.pivot.scale.x
+				tween_knockback(pivot.scale.x*30.0)
+				playback.travel("knockback")
 				tween_hit()
 				still_time.start(0.9)
 				color_change.start(0.01)
-
+		else:
+			if damage == 20:
+				state = STILL
+				pivot.scale.x = target2.pivot.scale.x
+				tween_knockback(pivot.scale.x*50.0)
+				playback.travel("knockback")
+				tween_hit()
+				still_time.start(1.5)
+	
 	if health == 0:
 		audio_stream_player_grunt.play()
 		playback.travel("knockdown")
@@ -153,6 +178,10 @@ func tween_hit():
 	tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.07).from_current()
 	tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.07).from_current()
 	tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+	
+func tween_knockback(x):
+	var tween = create_tween()
+	tween.tween_property(character, "position", Vector2(position.x+x,position.y), 0.5).from_current()
 
 func update_target(target, speed):
 	movement_speed = speed
