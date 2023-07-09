@@ -97,18 +97,24 @@ func take_damage(player, damage):
 			state = STILL
 			health = max(health - damage, 0)
 			audio_stream_player_hurt.play()
-			playback.travel("hurt")
-			tween_hit()
 			if damage == 15:
+				playback.travel("hurt")
+				tween_hit()
 				still_time.start(0.8)
 				color_change.start(0.4)
 			if damage == 20:
+				playback.travel("knockback")
+				tween_hit()
 				still_time.start(1.5)
 				color_change.start(0.01)
 			if damage == 35:
+				playback.travel("hurt")
+				tween_hit()
 				still_time.start(0.8)
 				color_change.start(0.5)
 			if damage == 50:
+				playback.travel("hurt")
+				tween_hit()
 				still_time.start(1.0)
 				color_change.start(0.01)
 
@@ -118,15 +124,19 @@ func take_damage(player, damage):
 			state = STILL
 			health = max(health - damage, 0)
 			audio_stream_player_hurt.play()
-			playback.travel("hurt")
-			tween_hit()
 			if damage == 5:
+				playback.travel("hurt")
+				tween_hit()
 				still_time.start(0.8)
-				color_change.start(0.5)
+				color_change.start(0.4)
 			if damage == 20:
+				playback.travel("knockback")
+				tween_hit()
 				still_time.start(1.5)
 				color_change.start(0.01)
 			if damage == 70:
+				playback.travel("hurt")
+				tween_hit()
 				still_time.start(0.9)
 				color_change.start(0.01)
 
