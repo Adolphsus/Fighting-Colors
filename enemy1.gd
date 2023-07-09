@@ -90,28 +90,46 @@ func actor_setup():
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
-func take_damage(player):
+func take_damage(player, damage):
 	if player == 'player1':
 		if color == RED or color == NONE:
 			color = RED
 			state = STILL
-			health = max(health - 25, 0)
+			health = max(health - damage, 0)
 			audio_stream_player_hurt.play()
 			playback.travel("hurt")
 			tween_hit()
-			still_time.start(0.9)
-			color_change.start(0.9)
+			if damage == 15:
+				still_time.start(0.8)
+				color_change.start(0.4)
+			if damage == 20:
+				still_time.start(1.5)
+				color_change.start(0.01)
+			if damage == 35:
+				still_time.start(0.8)
+				color_change.start(0.5)
+			if damage == 50:
+				still_time.start(1.0)
+				color_change.start(0.01)
 
 	if player == 'player2':
 		if color == BLUE or color == NONE:
 			color = BLUE
 			state = STILL
-			health = max(health - 25, 0)
+			health = max(health - damage, 0)
 			audio_stream_player_hurt.play()
 			playback.travel("hurt")
 			tween_hit()
-			still_time.start(0.9)
-			color_change.start(0.9)
+			if damage == 5:
+				still_time.start(0.8)
+				color_change.start(0.5)
+			if damage == 20:
+				still_time.start(1.5)
+				color_change.start(0.01)
+			if damage == 70:
+				still_time.start(0.9)
+				color_change.start(0.01)
+
 	if health == 0:
 		audio_stream_player_grunt.play()
 		playback.travel("knockdown")

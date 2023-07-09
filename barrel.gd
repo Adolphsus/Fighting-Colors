@@ -10,7 +10,7 @@ var health = 40
 
 
 var state = 'idle'
-func take_damage(player):
+func take_damage(player, damage):
 	state = 'hurt'
 	var tween = create_tween()
 	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),randf_range(-3, 3)), 0.02)
