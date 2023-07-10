@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://ctiurf10vk1ym"]
+[gd_scene load_steps=44 format=3 uid="uid://ctiurf10vk1ym"]
 
 [ext_resource type="Script" path="res://enemy1.gd" id="1_27802"]
 [ext_resource type="Texture2D" uid="uid://dtu6p7mcquvbx" path="res://assets/Streets of Fight files/Spritesheets/Enemy Punk/all movement enemy1.png" id="2_2rl65"]
@@ -94,18 +94,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_6u8xn"]
 resource_name = "idle"
@@ -134,18 +122,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_r8h3b"]
@@ -176,18 +152,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_q7gl6"]
 resource_name = "knockdown"
@@ -210,18 +174,6 @@ tracks/1/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -294,18 +246,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e8tjr"]
@@ -380,8 +320,6 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6txbq"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ypha6"]
 states/End/position = Vector2(914, 186)
 states/Start/position = Vector2(199, 186)
@@ -397,8 +335,8 @@ states/punch/node = SubResource("AnimationNodeAnimation_uwq7c")
 states/punch/position = Vector2(377, 66)
 states/walk/node = SubResource("AnimationNodeAnimation_gg3it")
 states/walk/position = Vector2(508, 297)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3pkrm"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_qp7uw"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_uustt"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_07exw"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_q1xh4"), "idle", "knockdown", SubResource("AnimationNodeStateMachineTransition_ro781"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_ru345"), "knockdown", "idle", SubResource("AnimationNodeStateMachineTransition_8siwf"), "knockdown", "End", SubResource("AnimationNodeStateMachineTransition_kn386"), "punch", "hurt", SubResource("AnimationNodeStateMachineTransition_yn2rn"), "walk", "punch", SubResource("AnimationNodeStateMachineTransition_ccpqt"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_suvjq"), "punch", "knockback", SubResource("AnimationNodeStateMachineTransition_xua24"), "idle", "knockback", SubResource("AnimationNodeStateMachineTransition_scyam"), "walk", "knockback", SubResource("AnimationNodeStateMachineTransition_74xp8"), "hurt", "knockback", SubResource("AnimationNodeStateMachineTransition_k7yxm"), "knockback", "idle", SubResource("AnimationNodeStateMachineTransition_ownea"), "punch", "knockdown", SubResource("AnimationNodeStateMachineTransition_6txbq")]
-graph_offset = Vector2(7.59813, -77.0008)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3pkrm"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_qp7uw"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_uustt"), "idle", "punch", SubResource("AnimationNodeStateMachineTransition_07exw"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_q1xh4"), "idle", "knockdown", SubResource("AnimationNodeStateMachineTransition_ro781"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_ru345"), "knockdown", "idle", SubResource("AnimationNodeStateMachineTransition_8siwf"), "knockdown", "End", SubResource("AnimationNodeStateMachineTransition_kn386"), "punch", "hurt", SubResource("AnimationNodeStateMachineTransition_yn2rn"), "walk", "punch", SubResource("AnimationNodeStateMachineTransition_ccpqt"), "punch", "idle", SubResource("AnimationNodeStateMachineTransition_suvjq"), "punch", "knockback", SubResource("AnimationNodeStateMachineTransition_xua24"), "idle", "knockback", SubResource("AnimationNodeStateMachineTransition_scyam"), "walk", "knockback", SubResource("AnimationNodeStateMachineTransition_74xp8"), "hurt", "knockback", SubResource("AnimationNodeStateMachineTransition_k7yxm"), "knockback", "idle", SubResource("AnimationNodeStateMachineTransition_ownea")]
+graph_offset = Vector2(-310.28, -77.0008)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_0sk2y"]
 
