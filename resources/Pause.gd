@@ -11,6 +11,10 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("Pause"):
+		var players = get_tree().get_nodes_in_group("Players")
+		var player1 = players[0]
+		var player2 = players[1]
+		if player1.alive == true and player2.alive == true:
 			visible = !visible
 			get_tree().paused = visible
 
