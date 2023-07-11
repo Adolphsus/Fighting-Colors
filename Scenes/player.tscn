@@ -87,6 +87,10 @@ func take_damage_player(damage):
 		#acá va death
 		playback.call_deferred(\"travel\",\"knockdown\")
 		alive = false
+		var stage = get_tree().get_nodes_in_group(\"Stages\")
+		stage = stage[0]
+		await get_tree().create_timer(2.0).timeout
+		stage.defeat()
 	else:
 		playback.call_deferred(\"travel\",\"hurt\")
 

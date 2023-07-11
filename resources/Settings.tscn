@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://bdp6klw5kycyl"]
+[gd_scene load_steps=22 format=3 uid="uid://1u4si571k0xx"]
 
 [ext_resource type="Texture2D" uid="uid://cuuchk7auby44" path="res://assets/Streets of Fight files/Stage Layers/tileset.png" id="1_rcb0q"]
+[ext_resource type="Script" path="res://resources/Settings.gd" id="1_u3d04"]
 [ext_resource type="Theme" uid="uid://bq7c0qybdo4x6" path="res://resources/theme.tres" id="3_o3hqk"]
-[ext_resource type="Script" path="res://resources/main_menu.gd" id="4_h2c1r"]
 [ext_resource type="Texture2D" uid="uid://mym18epvii16" path="res://assets/Fonts/scroll.png" id="5_2b7iv"]
 [ext_resource type="Texture2D" uid="uid://dd03ju5qu57hj" path="res://assets/Fonts/ethereum-1.png" id="5_8m3qk"]
 [ext_resource type="Texture2D" uid="uid://dotefloaolpek" path="res://assets/Fonts/ethereum-2.png" id="6_2ymry"]
@@ -1651,6 +1651,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 202.0
 offset_bottom = 144.0
+script = ExtResource("1_u3d04")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-240, -80)
@@ -1671,7 +1672,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_o3hqk")
 theme_override_constants/margin_left = 24
-script = ExtResource("4_h2c1r")
 
 [node name="PanelContainer" type="PanelContainer" parent="MainMenu"]
 layout_mode = 2
@@ -1748,3 +1748,5 @@ theme_override_styles/slider = SubResource("StyleBoxTexture_f42a8")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_uxgi4")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_uxgi4")
 value = 100.0
+
+[connection signal="toggled" from="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Fullscreen/CheckBox" to="." method="_on_check_box_toggled"]
