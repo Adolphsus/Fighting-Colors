@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bxbwvdv0lih6m"]
+[gd_scene load_steps=33 format=3 uid="uid://bxbwvdv0lih6m"]
 
 [ext_resource type="Texture2D" uid="uid://d1mxwowv8mle6" path="res://assets/Streets of Fight files/Stage Layers/back.png" id="1_5paak"]
 [ext_resource type="PackedScene" uid="uid://bktn544wckokf" path="res://Scenes/player.tscn" id="1_h2swh"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c8m1u7ghoi5od" path="res://barrel.tscn" id="9_1c6i5"]
 [ext_resource type="PackedScene" uid="uid://ccvd22tllb2ax" path="res://enemy_3.tscn" id="10_r4h2x"]
 [ext_resource type="Script" path="res://Scenes/Area2D.gd" id="14_up86e"]
+[ext_resource type="PackedScene" uid="uid://bjuybne4g5hhv" path="res://boss.tscn" id="15_b2w4p"]
 [ext_resource type="Theme" uid="uid://ch881euxht8j4" path="res://resources/health_bar_theme.tres" id="16_bcd7v"]
 [ext_resource type="PackedScene" uid="uid://dl52j83dtimyr" path="res://resources/Pause.tscn" id="16_jd33o"]
 [ext_resource type="PackedScene" uid="uid://b8m2iyp80u64b" path="res://defeat_menu.tscn" id="19_n5jd1"]
@@ -1735,6 +1736,9 @@ target = NodePath("../../../Players/Player2")
 [node name="Enemy2" parent="Kinetic/NavigationRegion2D/Enemies" node_paths=PackedStringArray("target") instance=ExtResource("9_0ppfo")]
 position = Vector2(296, 99)
 target = NodePath("../../../Players/Player")
+
+[node name="Boss" parent="Kinetic/NavigationRegion2D/Enemies" instance=ExtResource("15_b2w4p")]
+position = Vector2(381, 117)
 
 [node name="Nivel" type="Area2D" parent="." groups=["Levels"]]
 collision_layer = 0

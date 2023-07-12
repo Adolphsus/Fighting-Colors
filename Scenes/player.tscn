@@ -84,7 +84,6 @@ func take_damage_player(damage):
 	health = max(health - damage, 0)
 	health_bar.value = health
 	if health == 0:
-		#acá va death
 		playback.call_deferred(\"travel\",\"knockdown\")
 		alive = false
 		var stage = get_tree().get_nodes_in_group(\"Stages\")
