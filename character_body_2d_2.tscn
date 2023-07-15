@@ -1,0 +1,140 @@
+[gd_scene load_steps=15 format=3 uid="uid://cmwtc1tvnml87"]
+
+[ext_resource type="Script" path="res://barrel.gd" id="1_84hj2"]
+[ext_resource type="Texture2D" uid="uid://c3b7gk0ov8752" path="res://assets/Streets of Fight files/Stage Layers/props/barrel.png" id="2_yoim3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvb7c"]
+size = Vector2(32, 42)
+
+[sub_resource type="Animation" id="Animation_hjqcb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4esi3"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_3cdfa"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qtngq"]
+_data = {
+"RESET": SubResource("Animation_hjqcb"),
+"hurt": SubResource("Animation_4esi3"),
+"idle": SubResource("Animation_3cdfa")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_08vt1"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nij4i"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6atla"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j2bfo"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_c4jll"]
+states/hurt/node = SubResource("AnimationNodeAnimation_08vt1")
+states/hurt/position = Vector2(662, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_nij4i")
+states/idle/position = Vector2(424, 99)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_6atla"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_j2bfo")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_3ajst"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wc0vo"]
+radius = 4.0
+
+[node name="CharacterBody2D2" type="CharacterBody2D"]
+position = Vector2(758, 88)
+script = ExtResource("1_84hj2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yoim3")
+hframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+light_mask = 4
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_dvb7c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Area2D/CollisionShape2D")
+libraries = {
+"": SubResource("AnimationLibrary_qtngq")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_c4jll")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_3ajst")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wc0vo")

@@ -10,8 +10,8 @@ var players = 0
 @onready var enemy2 = preload("res://enemy_2.tscn")
 @onready var enemy3 = preload("res://enemy_3.tscn")
 
-var limitL = 540
-var limitR = 1010
+var limitL = 1450
+var limitR = 1917
 var contador = 0
 var limitRfinal = 3250
 @onready var wave = 0
@@ -29,7 +29,7 @@ func on_body_exited(body: Node2D):
 
 func start():
 	if not cleared:
-		spawn(enemy1, point_1)
+		spawn(enemy2, point_1)
 		await get_tree().create_timer(1.0).timeout
 		spawn(enemy3, point_2)
 		contador = 0
@@ -45,19 +45,22 @@ func end(): #acá se pasa de un wave a otro
 		wave = 2
 		spawn(enemy1, point_1)
 		await get_tree().create_timer(1.0).timeout
-		spawn(enemy1, point_2)
+		spawn(enemy2, point_2)
 		await get_tree().create_timer(1.0).timeout
+		spawn(enemy3, point_2)
 		print("wave: " + str(wave))
 	if contador == 2 and wave == 2:
 		contador = 0
 		wave = 3
 		spawn(enemy1, point_1)
 		await get_tree().create_timer(0.5).timeout
-		spawn(enemy1, point_2)
+		spawn(enemy2, point_2)
 		await get_tree().create_timer(3.0).timeout
-		spawn(enemy1, point_1)
+		spawn(enemy3, point_1)
 		await get_tree().create_timer(0.5).timeout
-		spawn(enemy1, point_2)
+		spawn(enemy3, point_2)
+		await get_tree().create_timer(0.5).timeout
+		spawn(enemy1, point_1)
 		print("wave: " + str(wave))
 	if contador == 4 and wave == 3:
 		Game.camera.limits(limitL, limitRfinal)
@@ -74,4 +77,3 @@ func spawn(en, point):
 func _ready():
 	nivel.body_entered.connect(on_body_entered)
 	nivel.body_exited.connect(on_body_exited)
-	

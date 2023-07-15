@@ -16,6 +16,9 @@ extends CharacterBody2D
 enum {RED, BLUE, NONE}
 var color = NONE
 
+#Drop
+var food = preload("res://food.tscn")
+
 #variables de navegación
 @onready var players = get_tree().get_nodes_in_group("Players")
 @onready var target1 = players[0]
@@ -53,7 +56,7 @@ DEATH,
 IDLE,
 STILL
 }
-var state = IDLE
+var state = SEEK
 
 func _ready():
 	progress_bar.value = Max_health
@@ -178,6 +181,12 @@ func tween_hit():
 func tween_knockback(x):
 	var tween = create_tween()
 	tween.tween_property(character, "position", Vector2(position.x+x,position.y), 0.5).from_current()
+	
+
+func spawn():
+	var node = food.instantiate()
+	node.position = global_position
+	get_parent().add_child(node)
 
 func delete():
 	await get_tree().create_timer(1.0).timeout
@@ -198,6 +207,7 @@ func delete():
 	visible = true
 	await get_tree().create_timer(0.1).timeout
 	current_level.end()
+	spawn()
 	queue_free()
 
 func update_target(target, speed):

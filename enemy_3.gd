@@ -52,7 +52,7 @@ DEATH,
 IDLE,
 STILL
 }
-var state = IDLE
+var state = SEEK
 
 func _ready():
 	progress_bar.value = Max_health
