@@ -14,6 +14,7 @@ var limitL = 540
 var limitR = 1010
 var contador = 0
 var limitRfinal = 3250
+@onready var wave = 0
 var cleared = false
 
 func on_body_entered(body: Node2D):
@@ -29,17 +30,36 @@ func on_body_exited(body: Node2D):
 func start():
 	if not cleared:
 		spawn(enemy1, point_1)
-		spawn(enemy1, point_2)
+		contador = 0
+		wave = 1
+		print("wave: " + str(wave))
 		if Game.camera:
 			Game.camera.limits(limitL, limitR)
 		
-func end():
+func end(): #acá se pasa de un wave a otro
 	contador +=1
-	print(contador)
-	if contador == 2:
+	if contador == 1 and wave == 1: #se derrotaron a los enemigos necesarios en su wave correspondiente
+		contador = 0
+		wave = 2
+		spawn(enemy1, point_1)
+		await get_tree().create_timer(1.0).timeout
+		spawn(enemy1, point_2)
+		print("wave: " + str(wave))
+	if contador == 2 and wave == 2:
+		contador = 0
+		wave = 3
+		spawn(enemy1, point_1)
+		await get_tree().create_timer(0.5).timeout
+		spawn(enemy1, point_2)
+		await get_tree().create_timer(3.0).timeout
+		spawn(enemy1, point_1)
+		await get_tree().create_timer(0.5).timeout
+		spawn(enemy1, point_2)
+		print("wave: " + str(wave))
+	if contador == 4 and wave == 3:
 		Game.camera.limits(limitL, limitRfinal)
 		cleared = true
-		print('funciono')
+		remove_from_group("Levels")
 
 func spawn(en, point):
 	var spawn_point = Vector2(point.position)

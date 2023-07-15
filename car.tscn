@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://brv4ukegfxevw"]
+
+[ext_resource type="Texture2D" uid="uid://tvwpvmpevifl" path="res://assets/Streets of Fight files/Stage Layers/props/car.png" id="1_1u8lr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxv5s"]
+size = Vector2(134, 11)
+
+[node name="Car" type="CharacterBody2D"]
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1u8lr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 18.5)
+shape = SubResource("RectangleShape2D_xxv5s")

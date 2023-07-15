@@ -15,8 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://bbnv6o2buttyd" path="res://enemy_2.tscn" id="9_0ppfo"]
 [ext_resource type="PackedScene" uid="uid://c8m1u7ghoi5od" path="res://barrel.tscn" id="9_1c6i5"]
 [ext_resource type="PackedScene" uid="uid://ccvd22tllb2ax" path="res://enemy_3.tscn" id="10_r4h2x"]
+[ext_resource type="PackedScene" uid="uid://brv4ukegfxevw" path="res://car.tscn" id="12_p1d7v"]
 [ext_resource type="Script" path="res://Scenes/Area2D.gd" id="14_up86e"]
-[ext_resource type="PackedScene" uid="uid://bjuybne4g5hhv" path="res://boss.tscn" id="15_b2w4p"]
 [ext_resource type="Theme" uid="uid://ch881euxht8j4" path="res://resources/health_bar_theme.tres" id="16_bcd7v"]
 [ext_resource type="PackedScene" uid="uid://dl52j83dtimyr" path="res://resources/Pause.tscn" id="16_jd33o"]
 [ext_resource type="PackedScene" uid="uid://b8m2iyp80u64b" path="res://defeat_menu.tscn" id="19_n5jd1"]
@@ -1614,9 +1614,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(125, 100, 122, 206, 477
 size = Vector2(466.75, 143.75)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_32fjs"]
-vertices = PackedVector2Array(257, -22, 264, 97, -175, 94, -181, -24)
+vertices = PackedVector2Array(273, -36, 271, 101, -189, 101, -191, -39)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-181, -24, -175, 94, 264, 97, 257, -22)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-191, -39, -189, 101, 271, 101, 273, -36)])
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u01iv"]
 normal = Vector2(1, 0)
@@ -1717,7 +1717,11 @@ collision_mask = 9
 y_sort_enabled = true
 
 [node name="CharacterBody2D" parent="Kinetic/Props" instance=ExtResource("9_1c6i5")]
-position = Vector2(240, 85)
+position = Vector2(240, 102)
+collision_layer = 1
+
+[node name="Car" parent="Kinetic/Props" instance=ExtResource("12_p1d7v")]
+position = Vector2(277, 195)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Kinetic"]
 y_sort_enabled = true
@@ -1729,34 +1733,50 @@ y_sort_enabled = true
 [node name="Enemy1" parent="Kinetic/NavigationRegion2D/Enemies" instance=ExtResource("7_er5t7")]
 position = Vector2(313, 159)
 
-[node name="Enemy3" parent="Kinetic/NavigationRegion2D/Enemies" node_paths=PackedStringArray("target") instance=ExtResource("10_r4h2x")]
+[node name="Enemy3" parent="Kinetic/NavigationRegion2D/Enemies" instance=ExtResource("10_r4h2x")]
 position = Vector2(348, 111)
-target = NodePath("../../../Players/Player2")
 
-[node name="Enemy2" parent="Kinetic/NavigationRegion2D/Enemies" node_paths=PackedStringArray("target") instance=ExtResource("9_0ppfo")]
+[node name="Enemy2" parent="Kinetic/NavigationRegion2D/Enemies" instance=ExtResource("9_0ppfo")]
 position = Vector2(296, 99)
-target = NodePath("../../../Players/Player")
 
-[node name="Boss" parent="Kinetic/NavigationRegion2D/Enemies" instance=ExtResource("15_b2w4p")]
-position = Vector2(381, 117)
-
-[node name="Nivel" type="Area2D" parent="." groups=["Levels"]]
+[node name="Nivel1" type="Area2D" parent="." groups=["Levels"]]
 collision_layer = 0
 collision_mask = 6
 monitorable = false
 script = ExtResource("14_up86e")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Nivel"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nivel1"]
 position = Vector2(776.625, 167.875)
 shape = SubResource("RectangleShape2D_ti5l8")
 
-[node name="Point1" type="Marker2D" parent="Nivel"]
-position = Vector2(970, 187)
+[node name="Point1" type="Marker2D" parent="Nivel1"]
+position = Vector2(1020, 192)
 
-[node name="Point2" type="Marker2D" parent="Nivel"]
-position = Vector2(969, 124)
+[node name="Point2" type="Marker2D" parent="Nivel1"]
+position = Vector2(1024, 124)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Nivel"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Nivel1"]
+position = Vector2(736, 136)
+navigation_polygon = SubResource("NavigationPolygon_32fjs")
+
+[node name="Nivel2" type="Area2D" parent="." groups=["Levels"]]
+position = Vector2(907, 0)
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("14_up86e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nivel2"]
+position = Vector2(776.625, 167.875)
+shape = SubResource("RectangleShape2D_ti5l8")
+
+[node name="Point1" type="Marker2D" parent="Nivel2"]
+position = Vector2(1020, 192)
+
+[node name="Point2" type="Marker2D" parent="Nivel2"]
+position = Vector2(1024, 124)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Nivel2"]
 position = Vector2(736, 136)
 navigation_polygon = SubResource("NavigationPolygon_32fjs")
 

@@ -32,6 +32,8 @@ var color = NONE
 @onready var levels = get_tree().get_nodes_in_group("Levels")
 @onready var current_level = levels[0]
 
+# Audio
+
 #stats
 const Max_health = 200
 var health = 200:
@@ -184,7 +186,7 @@ func update_target(target, speed):
 			pivot.scale.x = 1
 		elif target == target1L or target == target2L:
 			pivot.scale.x = -1
-		playback.travel("attack")
+		playback.travel("punch")
 		state = STILL
 		still_time.start(2.5)
 

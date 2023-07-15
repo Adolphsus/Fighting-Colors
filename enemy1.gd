@@ -54,7 +54,7 @@ DEATH,
 IDLE,
 STILL
 }
-var state = IDLE
+var state = SEEK
 
 func _ready():
 	progress_bar.value = Max_health
@@ -62,8 +62,8 @@ func _ready():
 	# PATHFINDING
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
-	navigation_agent.path_desired_distance = 1.0
-	navigation_agent.target_desired_distance = 1.0
+	navigation_agent.path_desired_distance = 1.5
+	navigation_agent.target_desired_distance = 1.5
 	# Make sure to not await during _ready.
 	call_deferred("actor_setup")
 	
@@ -137,11 +137,11 @@ func take_damage(player, damage):
 			state = STILL
 			health = max(health - damage, 0)
 			audio_stream_player_hurt.play()
-			if damage == 5:
+			if damage == 15:
 				playback.travel("hurt")
 				tween_hit()
 				still_time.start(0.8)
-				color_change.start(0.4)
+				color_change.start(0.47)
 			if damage == 20:
 				pivot.scale.x = target2.pivot.scale.x
 				tween_knockback(pivot.scale.x*50.0)
@@ -149,7 +149,7 @@ func take_damage(player, damage):
 				tween_hit()
 				still_time.start(1.5)
 				color_change.start(0.01)
-			if damage == 70:
+			if damage == 60:
 				pivot.scale.x = target2.pivot.scale.x
 				tween_knockback(pivot.scale.x*30.0)
 				playback.travel("knockback")
@@ -183,6 +183,27 @@ func tween_knockback(x):
 	var tween = create_tween()
 	tween.tween_property(character, "position", Vector2(position.x+x,position.y), 0.5).from_current()
 
+func delete():
+	await get_tree().create_timer(1.0).timeout
+	visible = false
+	await get_tree().create_timer(0.1).timeout
+	visible = true
+	await get_tree().create_timer(0.1).timeout
+	visible = false
+	await get_tree().create_timer(0.1).timeout
+	visible = true
+	await get_tree().create_timer(0.1).timeout
+	visible = false
+	await get_tree().create_timer(0.1).timeout
+	visible = true
+	await get_tree().create_timer(0.1).timeout
+	visible = false
+	await get_tree().create_timer(0.1).timeout
+	visible = true
+	await get_tree().create_timer(0.1).timeout
+	current_level.end()
+	queue_free()
+
 func update_target(target, speed):
 	movement_speed = speed
 	set_movement_target(target.global_position)
@@ -213,9 +234,7 @@ func _physics_process(delta):
 	if state == DEATH:
 		color = NONE
 		movement_speed = 0
-		await get_tree().create_timer(2.0).timeout
-		current_level.end()
-		queue_free()
+		delete()
 	if state == STILL:
 		movement_speed = 0
 	if state == SEEK:
@@ -224,11 +243,11 @@ func _physics_process(delta):
 			pivot.scale.x = -1
 		if velocity.x < 0:
 			pivot.scale.x = 1 
-		if color == RED:
-			update_target(set_target("player1"), 40.0)
+		if color == RED or color == NONE:
+			update_target(set_target("player2"), 40.0)
 		if color == BLUE:
 			var a = set_target("player2")
-			update_target(set_target("player2"), 40.0)
+			update_target(set_target("player1"), 40.0)
 	if state == IDLE:
 		playback.travel("idle")
 
