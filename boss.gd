@@ -16,6 +16,13 @@ extends CharacterBody2D
 enum {RED, BLUE, NONE}
 var color = NONE
 
+#audio
+@onready var stage = get_tree().get_nodes_in_group("Stages")
+@onready var current_stage = stage[0]
+
+#Drop
+var food = preload("res://food.tscn")
+
 #variables de navegación
 @onready var players = get_tree().get_nodes_in_group("Players")
 @onready var target1 = players[0]
@@ -25,25 +32,24 @@ var color = NONE
 @onready var target1L = markers[1] 
 @onready var target2R = markers[2]
 @onready var target2L = markers[3]
-@onready var movement_speed: float = 40.0
+@onready var movement_speed: float = 30.0
 @export var navigation_agent: NavigationAgent2D
 
 #Niveles
 @onready var levels = get_tree().get_nodes_in_group("Levels")
 @onready var current_level = levels[0]
 
-# Audio
 
 #stats
-const Max_health = 200
-var health = 200:
+const Max_health = 1000
+var health = 1000:
 	set(value):
 		health = value
 		progress_bar.value = value
 	get:
 		return health
 		
-const damage = 50
+const damage = 100
 
 #estados de la IA
 enum { SEEK,
@@ -92,78 +98,111 @@ func set_movement_target(movement_target: Vector2):
 func take_damage(player, damage):
 	if player == 'player1':
 		if color == RED or color == NONE:
+			current_stage.play_hurt()
 			color = RED
-			state = STILL
+			if state != ATTACK:
+				state = STILL
 			health = max(health - damage, 0)
 			if damage == 15:
-				playback.travel("hurt")
+				if state != ATTACK:
+					playback.travel("hurt")
 				tween_hit()
 				still_time.start(0.8)
 				color_change.start(0.4)
 			if damage == 20:
 				pivot.scale.x = target1.pivot.scale.x
-				tween_knockback(pivot.scale.x*50.0)
-				playback.travel("knockback")
+				tween_knockback(pivot.scale.x*5.0)
+				if state != ATTACK:
+					playback.travel("hurt")
 				tween_hit()
-				still_time.start(1.5)
+				still_time.start(1.4)
 				color_change.start(0.01)
 			if damage == 35:
-				playback.travel("hurt")
+				if state != ATTACK:
+					playback.travel("hurt")
 				tween_hit()
 				still_time.start(0.8)
 				color_change.start(0.5)
 			if damage == 50:
 				pivot.scale.x = target1.pivot.scale.x
-				tween_knockback(pivot.scale.x*30.0)
-				playback.travel("knockback")
+				tween_knockback(pivot.scale.x*5.0)
+				if state != ATTACK:
+					playback.travel("hurt")
 				tween_hit()
-				still_time.start(1.0)
+				still_time.start(1.4)
 				color_change.start(0.01)
 		else:
 			if damage == 20:
 				state = STILL
 				pivot.scale.x = target1.pivot.scale.x
-				tween_knockback(pivot.scale.x*50.0)
-				playback.travel("knockback")
+				tween_knockback(pivot.scale.x*5.0)
+				if state != ATTACK:
+					playback.travel("hurt")
 				tween_hit()
-				still_time.start(1.5)
+				still_time.start(1.4)
 		
 	if player == 'player2':
 		if color == BLUE or color == NONE:
+			current_stage.play_hurt()
 			color = BLUE
 			state = STILL
 			health = max(health - damage, 0)
-			if damage == 5:
-				playback.travel("hurt")
+			if damage == 15:
+				if state != ATTACK:
+					playback.travel("hurt")
 				tween_hit()
 				still_time.start(0.8)
-				color_change.start(0.4)
+				color_change.start(0.47)
 			if damage == 20:
 				pivot.scale.x = target2.pivot.scale.x
-				tween_knockback(pivot.scale.x*50.0)
-				playback.travel("knockback")
+				tween_knockback(pivot.scale.x*5.0)
+				if state != ATTACK:
+					playback.travel("hurt")
 				tween_hit()
-				still_time.start(1.5)
+				still_time.start(1.4)
 				color_change.start(0.01)
-			if damage == 70:
+			if damage == 60:
 				pivot.scale.x = target2.pivot.scale.x
-				tween_knockback(pivot.scale.x*30.0)
-				playback.travel("knockback")
+				tween_knockback(pivot.scale.x*5.0)
+				if state != ATTACK:
+					playback.travel("hurt")
 				tween_hit()
-				still_time.start(0.9)
+				still_time.start(1.4)
 				color_change.start(0.01)
 		else:
 			if damage == 20:
 				state = STILL
 				pivot.scale.x = target2.pivot.scale.x
-				tween_knockback(pivot.scale.x*50.0)
-				playback.travel("knockback")
+				tween_knockback(pivot.scale.x*5.0)
+				if state != ATTACK:
+					playback.travel("hurt")
 				tween_hit()
-				still_time.start(1.5)
+				still_time.start(1.4)
 	
 	if health == 0:
-		playback.travel("knockdown")
+		playback.travel("death")
 		state = DEATH
+		var tween = create_tween()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
 		still_time.stop()
 		color_change.stop()
 
@@ -178,6 +217,27 @@ func tween_knockback(x):
 	var tween = create_tween()
 	tween.tween_property(character, "position", Vector2(position.x+x,position.y), 0.5).from_current()
 
+func delete():
+	await get_tree().create_timer(1.0).timeout
+	visible = false
+	await get_tree().create_timer(0.1).timeout
+	visible = true
+	await get_tree().create_timer(0.1).timeout
+	visible = false
+	await get_tree().create_timer(0.1).timeout
+	visible = true
+	await get_tree().create_timer(0.1).timeout
+	visible = false
+	await get_tree().create_timer(0.1).timeout
+	visible = true
+	await get_tree().create_timer(0.1).timeout
+	visible = false
+	await get_tree().create_timer(0.1).timeout
+	visible = true
+	await get_tree().create_timer(0.1).timeout
+	current_level.end()
+	queue_free()
+
 func update_target(target, speed):
 	movement_speed = speed
 	set_movement_target(target.global_position)
@@ -186,9 +246,22 @@ func update_target(target, speed):
 			pivot.scale.x = 1
 		elif target == target1L or target == target2L:
 			pivot.scale.x = -1
-		playback.travel("punch")
-		state = STILL
-		still_time.start(2.5)
+		state = ATTACK
+		playback.travel("attack")
+		await get_tree().create_timer(0.45).timeout
+		var tween = create_tween()
+		tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(-2,0), 0.1).from_current()
+		tween.tween_property(sprite_2d, "position", Vector2(), 0.1).from_current()
+		still_time.start(1.5)
 
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
@@ -208,22 +281,20 @@ func _physics_process(delta):
 	if state == DEATH:
 		color = NONE
 		movement_speed = 0
-		await get_tree().create_timer(2.0).timeout
-		current_level.end()
-		queue_free()
-	if state == STILL:
+		delete()
+	if state == STILL or state == ATTACK:
 		movement_speed = 0
 	if state == SEEK:
 		playback.travel("walk")
 		if velocity.x > 0:
 			pivot.scale.x = -1
 		if velocity.x < 0:
-			pivot.scale.x = 1 
-		if color == RED:
-			update_target(set_target("player1"), 40.0)
-		if color == BLUE:
-			var a = set_target("player2")
-			update_target(set_target("player2"), 40.0)
+			pivot.scale.x = 1
+			
+		if abs(target1.global_position - global_position) <= abs(target2.global_position - global_position):
+			update_target(set_target("player1"), movement_speed)
+		if abs(target2.global_position - global_position) < abs(target1.global_position - global_position):
+			update_target(set_target("player2"), movement_speed)
 	if state == IDLE:
 		playback.travel("idle")
 
