@@ -16,6 +16,10 @@ extends CharacterBody2D
 enum {RED, BLUE, NONE}
 var color = NONE
 
+#audio
+@onready var stage = get_tree().get_nodes_in_group("Stages")
+@onready var current_stage = stage[0]
+
 #variables de navegación
 @onready var players = get_tree().get_nodes_in_group("Players")
 @onready var target1 = players[0]
@@ -32,9 +36,6 @@ var color = NONE
 @onready var levels = get_tree().get_nodes_in_group("Levels")
 @onready var current_level = levels[0]
 
-# Audio
-@onready var audio_stream_player_hurt = $hurt
-@onready var audio_stream_player_grunt = $grunt
 
 #stats
 const Max_health = 200
@@ -62,8 +63,8 @@ func _ready():
 	# PATHFINDING
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
-	navigation_agent.path_desired_distance = 1.5
-	navigation_agent.target_desired_distance = 1.5
+	navigation_agent.path_desired_distance = 2.0
+	navigation_agent.target_desired_distance = 2.0
 	# Make sure to not await during _ready.
 	call_deferred("actor_setup")
 	
@@ -94,10 +95,10 @@ func set_movement_target(movement_target: Vector2):
 func take_damage(player, damage):
 	if player == 'player1':
 		if color == RED or color == NONE:
+			current_stage.play_hurt()
 			color = RED
 			state = STILL
 			health = max(health - damage, 0)
-			audio_stream_player_hurt.play()
 			if damage == 15:
 				playback.travel("hurt")
 				tween_hit()
@@ -133,10 +134,10 @@ func take_damage(player, damage):
 		
 	if player == 'player2':
 		if color == BLUE or color == NONE:
+			current_stage.play_hurt()
 			color = BLUE
 			state = STILL
 			health = max(health - damage, 0)
-			audio_stream_player_hurt.play()
 			if damage == 15:
 				playback.travel("hurt")
 				tween_hit()
@@ -166,7 +167,6 @@ func take_damage(player, damage):
 				still_time.start(1.5)
 	
 	if health == 0:
-		audio_stream_player_grunt.play()
 		playback.travel("knockdown")
 		state = DEATH
 		still_time.stop()

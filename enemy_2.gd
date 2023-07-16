@@ -16,6 +16,10 @@ extends CharacterBody2D
 enum {RED, BLUE, NONE}
 var color = NONE
 
+#audio
+@onready var stage = get_tree().get_nodes_in_group("Stages")
+@onready var current_stage = stage[0]
+
 #Drop
 var food = preload("res://food.tscn")
 
@@ -34,8 +38,6 @@ var food = preload("res://food.tscn")
 #Niveles
 @onready var levels = get_tree().get_nodes_in_group("Levels")
 @onready var current_level = levels[0]
-
-# Audio
 
 
 #stats
@@ -96,6 +98,7 @@ func set_movement_target(movement_target: Vector2):
 func take_damage(player, damage):
 	if player == 'player1':
 		if color == RED or color == NONE:
+			current_stage.play_hurt()
 			color = RED
 			state = STILL
 			health = max(health - damage, 0)
@@ -134,6 +137,7 @@ func take_damage(player, damage):
 		
 	if player == 'player2':
 		if color == BLUE or color == NONE:
+			current_stage.play_hurt()
 			color = BLUE
 			state = STILL
 			health = max(health - damage, 0)
@@ -185,7 +189,8 @@ func tween_knockback(x):
 
 func spawn():
 	var node = food.instantiate()
-	node.position = global_position
+	node.position = sprite_2d.global_position
+	node.position.y += 30
 	get_parent().add_child(node)
 
 func delete():

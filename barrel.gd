@@ -13,10 +13,12 @@ var health = 40
 
 func take_damage(player, damage):
 	var tween = create_tween()
-	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),randf_range(-3, 3)), 0.02)
-	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),randf_range(-3, 3)), 0.02)
-	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),randf_range(-3, 3)), 0.02)
-	tween.tween_property(sprite_2d, "position", Vector2(), 0.02)
+	var x = sprite_2d.position.x
+	var y = sprite_2d.position.y
+	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),sprite_2d.position.y + randf_range(-3, 3)), 0.02)
+	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),sprite_2d.position.y + randf_range(-3, 3)), 0.02)
+	tween.tween_property(sprite_2d, "position", Vector2(randf_range(-10,10),sprite_2d.position.y + randf_range(-3, 3)), 0.02)
+	tween.tween_property(sprite_2d, "position", Vector2(x, y), 0.02)
 	if player == 'player1':
 		if damage == 50:
 			playback.travel("hurt")
@@ -31,6 +33,7 @@ func take_damage(player, damage):
 func spawn():
 	var node = food.instantiate()
 	node.position = global_position
+	node.position.y += 20
 	get_parent().add_child(node)
 
 

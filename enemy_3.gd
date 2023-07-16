@@ -16,6 +16,10 @@ extends CharacterBody2D
 enum {RED, BLUE, NONE}
 var color = NONE
 
+#audio
+@onready var stage = get_tree().get_nodes_in_group("Stages")
+@onready var current_stage = stage[0]
+
 #variables de navegación
 @onready var players = get_tree().get_nodes_in_group("Players")
 @onready var target1 = players[0]
@@ -32,7 +36,6 @@ var color = NONE
 @onready var levels = get_tree().get_nodes_in_group("Levels")
 @onready var current_level = levels[0]
 
-# Audio
 
 #stats
 const Max_health = 200
@@ -92,6 +95,7 @@ func set_movement_target(movement_target: Vector2):
 func take_damage(player, damage):
 	if player == 'player1':
 		if color == RED or color == NONE:
+			current_stage.play_hurt()
 			color = RED
 			state = STILL
 			health = max(health - damage, 0)
@@ -130,6 +134,7 @@ func take_damage(player, damage):
 		
 	if player == 'player2':
 		if color == BLUE or color == NONE:
+			current_stage.play_hurt()
 			color = BLUE
 			state = STILL
 			health = max(health - damage, 0)
@@ -238,7 +243,7 @@ func _physics_process(delta):
 			pivot.scale.x = -1
 		if velocity.x < 0:
 			pivot.scale.x = 1 
-		if color == RED:
+		if color == RED or color == NONE:
 			update_target(set_target("player1"), 50.0)
 		if color == BLUE:
 			var a = set_target("player2")

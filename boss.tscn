@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bjuybne4g5hhv"]
+[gd_scene load_steps=35 format=3 uid="uid://kh8rtkqey48v"]
 
 [ext_resource type="Texture2D" uid="uid://cfla4c5w38fam" path="res://assets/Streets of Fight files/Spritesheets/Boss/ogre.png" id="1_gxo1u"]
 [ext_resource type="Script" path="res://boss.gd" id="1_ixdal"]

@@ -10,6 +10,7 @@ var players = 0
 @onready var enemy1 = preload("res://enemy1.tscn")
 @onready var enemy2 = preload("res://enemy_2.tscn")
 @onready var enemy3 = preload("res://enemy_3.tscn")
+@onready var enemies = $"../Kinetic/Enemies"
 
 var limitL = 2382
 var limitR = 2977
@@ -41,7 +42,7 @@ func start():
 		
 func end(): #acá se pasa de un wave a otro
 	contador +=1
-	if contador == 1 and wave == 1: #se derrotaron a los enemigos necesarios en su wave correspondiente
+	if contador == 2 and wave == 1: #se derrotaron a los enemigos necesarios en su wave correspondiente
 		contador = 0
 		wave = 2
 		spawn(enemy1, point_1)
@@ -50,7 +51,7 @@ func end(): #acá se pasa de un wave a otro
 		await get_tree().create_timer(1.0).timeout
 		spawn(enemy3, point_3)
 		print("wave: " + str(wave))
-	if contador == 2 and wave == 2:
+	if contador == 3 and wave == 2:
 		contador = 0
 		wave = 3
 		spawn(enemy1, point_1)
@@ -63,17 +64,17 @@ func end(): #acá se pasa de un wave a otro
 		await get_tree().create_timer(0.5).timeout
 		spawn(enemy1, point_1)
 		print("wave: " + str(wave))
-	if contador == 4 and wave == 3:
+	if contador == 5 and wave == 3:
 		Game.camera.limits(limitL, limitRfinal)
 		cleared = true
 		remove_from_group("Levels")
 
 func spawn(en, point):
-	var spawn_point = Vector2(point.position)
+	var spawn_point = Vector2(point.global_position)
 	var enemy = en.instantiate()
 	enemy.position = spawn_point
 	enemy.add_to_group("Enemies")
-	call_deferred("add_child", enemy)
+	enemies.call_deferred("add_child",enemy)
 
 func _ready():
 	nivel.body_entered.connect(on_body_entered)

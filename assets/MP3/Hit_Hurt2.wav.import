@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bui1xt0is8wco"
-path="res://.godot/imported/kick_whoosh.wav-f153dec9ed13586d9a58c127d26d7977.sample"
+uid="uid://cxd3awd7pubgp"
+path="res://.godot/imported/Hit_Hurt2.wav-f998cd146b27e6b5df66e82301aaeec9.sample"
 
 [deps]
 
-source_file="res://assets/MP3/kick_whoosh.wav"
-dest_files=["res://.godot/imported/kick_whoosh.wav-f153dec9ed13586d9a58c127d26d7977.sample"]
+source_file="res://assets/MP3/Hit_Hurt2.wav"
+dest_files=["res://.godot/imported/Hit_Hurt2.wav-f998cd146b27e6b5df66e82301aaeec9.sample"]
 
 [params]
 

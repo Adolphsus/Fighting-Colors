@@ -1,10 +1,8 @@
-[gd_scene load_steps=45 format=3 uid="uid://ctiurf10vk1ym"]
+[gd_scene load_steps=43 format=3 uid="uid://ctiurf10vk1ym"]
 
 [ext_resource type="Script" path="res://enemy1.gd" id="1_27802"]
 [ext_resource type="Texture2D" uid="uid://dtu6p7mcquvbx" path="res://assets/Streets of Fight files/Spritesheets/Enemy Punk/all movement enemy1.png" id="2_2rl65"]
-[ext_resource type="AudioStream" uid="uid://bfna6g1o16fbu" path="res://assets/MP3/body_hit.wav" id="3_4vcfx"]
 [ext_resource type="Theme" uid="uid://ch881euxht8j4" path="res://resources/health_bar_theme.tres" id="3_eegh6"]
-[ext_resource type="AudioStream" uid="uid://bno1ssgs75k4p" path="res://assets/MP3/Male Grunt-SoundBible.com-68178715.mp3" id="4_hxyi5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yvni"]
 size = Vector2(19, 15)
@@ -495,8 +493,10 @@ collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_27802")
 navigation_agent = NodePath("NavigationAgent2D")
+metadata/_edit_lock_ = true
 
 [node name="Pivot" type="Node2D" parent="."]
+position = Vector2(1, -27)
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 texture = ExtResource("2_2rl65")
@@ -513,10 +513,10 @@ disabled = true
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -21.0
-offset_top = -31.0
-offset_right = 20.0
-offset_bottom = -18.0
+offset_left = -20.0
+offset_top = -58.0
+offset_right = 21.0
+offset_bottom = -45.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -537,7 +537,6 @@ value = 100.0
 show_percentage = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 27)
 shape = SubResource("RectangleShape2D_ggwkn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -552,7 +551,6 @@ active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_0sk2y")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="Still_time" type="Timer" parent="."]
 wait_time = 1.147
@@ -561,17 +559,13 @@ one_shot = true
 [node name="Color_change" type="Timer" parent="."]
 one_shot = true
 
-[node name="hurt" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_4vcfx")
-
-[node name="grunt" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_hxyi5")
-
 [node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(1, -27)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(-1, 3)
+scale = Vector2(1, 1.3)
 shape = SubResource("RectangleShape2D_ryxtj")
 disabled = true
 debug_color = Color(0.996078, 0, 0.164706, 0.419608)
