@@ -1675,7 +1675,9 @@ text = "Credits"
 layout_mode = 2
 text = "Low Three studio
 pixelart - ansimuz
-sounds - soundbible.com"
+Musijc - ansimuz
+sounds - low three
+graffiti - craftpix.net"
 horizontal_alignment = 1
 
 [node name="Return" type="Button" parent="Menu/MainMenu/PanelContainer/MarginContainer/VBoxContainer"]

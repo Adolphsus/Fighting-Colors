@@ -1729,7 +1729,7 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxTexture_r7nog")
-text = "project f"
+text = "Fighting colors"
 horizontal_alignment = 1
 vertical_alignment = 1
 
