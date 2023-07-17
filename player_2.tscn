@@ -34,8 +34,8 @@ var damage = 0
 
 #vida y barra de vida
 @onready var health_bar = $\"../../../CanvasLayer/MarginContainer/HBoxContainer/ProgressBar2\"
-const Max_health = 200
-var health = 200
+const Max_health = 400
+var health = 400
 @export var alive = true
 
 func tween_hit():

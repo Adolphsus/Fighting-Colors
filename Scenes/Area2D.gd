@@ -56,15 +56,13 @@ func end(): #acá se pasa de un wave a otro
 		contador = 0
 		wave = 3
 		spawn(enemy1, point_1)
-		await get_tree().create_timer(0.5).timeout
-		spawn(enemy1, point_2)
-		await get_tree().create_timer(3.0).timeout
-		spawn(enemy1, point_1)
-		await get_tree().create_timer(0.5).timeout
-		spawn(enemy1, point_2)
 		spawn(enemy1, point_3)
+		await get_tree().create_timer(2.0).timeout
+		spawn(enemy1, point_2)
+		spawn(enemy3, point_4)
 		await get_tree().create_timer(0.5).timeout
-		spawn(enemy1, point_4)
+		spawn(enemy2, point_2)
+		spawn(enemy2, point_3)
 		print("wave: " + str(wave))
 	if contador == 6 and wave == 3:
 		Game.camera.limits(limitL, limitRfinal)

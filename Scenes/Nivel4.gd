@@ -13,10 +13,10 @@ var players = 0
 @onready var boss = preload("res://boss.tscn")
 @onready var enemies = $"../Kinetic/Enemies"
 
-var limitL = 2382
-var limitR = 2977
+var limitL = 3312
+var limitR = 3916
 var contador = 0
-var limitRfinal = 3250
+var limitRfinal = 3916
 @onready var wave = 0
 var cleared = false
 

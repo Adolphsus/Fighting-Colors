@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bxbwvdv0lih6m"]
+[gd_scene load_steps=56 format=3 uid="uid://bxbwvdv0lih6m"]
 
 [ext_resource type="Texture2D" uid="uid://d1mxwowv8mle6" path="res://assets/Streets of Fight files/Stage Layers/back.png" id="1_5paak"]
 [ext_resource type="PackedScene" uid="uid://bktn544wckokf" path="res://Scenes/player.tscn" id="1_h2swh"]
@@ -18,23 +18,22 @@
 [ext_resource type="Texture2D" uid="uid://drt8y6iwb7e2k" path="res://assets/props/banner-open.png" id="11_gv1au"]
 [ext_resource type="PackedScene" uid="uid://brv4ukegfxevw" path="res://car.tscn" id="12_p1d7v"]
 [ext_resource type="Texture2D" uid="uid://dmap8q5idetei" path="res://assets/props/banners.png" id="12_vmqyr"]
-[ext_resource type="PackedScene" path="res://character_body_2d_2.tscn" id="13_2ohri"]
+[ext_resource type="PackedScene" uid="uid://cmwtc1tvnml87" path="res://character_body_2d_2.tscn" id="13_2ohri"]
 [ext_resource type="Texture2D" uid="uid://b8rexr2nyllc7" path="res://assets/props/control-box-2.png" id="13_fm02h"]
 [ext_resource type="Texture2D" uid="uid://curoku82ujg6l" path="res://assets/Graffitis/1Band.png" id="14_q1w2v"]
 [ext_resource type="Script" path="res://Scenes/Area2D.gd" id="14_up86e"]
-[ext_resource type="PackedScene" path="res://barrel_3.tscn" id="15_py7da"]
+[ext_resource type="PackedScene" uid="uid://lkx81on5k3rt" path="res://barrel_3.tscn" id="15_py7da"]
 [ext_resource type="Texture2D" uid="uid://cp08xvrvy0lnk" path="res://assets/Graffitis/5Greenteam.png" id="15_yeqvi"]
-[ext_resource type="PackedScene" path="res://box.tscn" id="16_7xmao"]
+[ext_resource type="PackedScene" uid="uid://23n2nn8mbtx" path="res://box.tscn" id="16_7xmao"]
 [ext_resource type="Theme" uid="uid://ch881euxht8j4" path="res://resources/health_bar_theme.tres" id="16_bcd7v"]
 [ext_resource type="PackedScene" uid="uid://dl52j83dtimyr" path="res://resources/Pause.tscn" id="16_jd33o"]
 [ext_resource type="PackedScene" uid="uid://b8m2iyp80u64b" path="res://defeat_menu.tscn" id="19_n5jd1"]
 [ext_resource type="Script" path="res://Scenes/Nivel2.gd" id="20_6ng1d"]
 [ext_resource type="Texture2D" uid="uid://eu3vpf2hcvpg" path="res://assets/props/monitorface/monitorface.png" id="20_sj6xu"]
 [ext_resource type="Texture2D" uid="uid://cpqd4wcm02a1k" path="res://assets/props/banner-small.png" id="21_qa4ap"]
-[ext_resource type="Texture2D" uid="uid://j6fslcovkgtw" path="res://assets/props/control-box-3.png" id="22_l1sf8"]
+[ext_resource type="Texture2D" uid="uid://bcy10nx35p21o" path="res://assets/props/hotel-sign.png" id="22_asjlr"]
 [ext_resource type="Texture2D" uid="uid://cjs54n4jvoh7w" path="res://assets/Graffitis/8Loot.png" id="31_t14me"]
 [ext_resource type="Texture2D" uid="uid://ch2yk2p7rpv43" path="res://assets/Graffitis/4Shortway.png" id="32_oir1u"]
-[ext_resource type="PackedScene" uid="uid://kh8rtkqey48v" path="res://boss.tscn" id="33_qbb2a"]
 [ext_resource type="Texture2D" uid="uid://t3vr7r6qcj8g" path="res://assets/Graffitis/7Dangerarea.png" id="33_xcmdv"]
 [ext_resource type="Script" path="res://Scenes/Nivel3.gd" id="34_pos80"]
 [ext_resource type="AudioStream" uid="uid://cxd3awd7pubgp" path="res://assets/MP3/Hit_Hurt2.wav" id="40_7p4o6"]
@@ -1665,11 +1664,6 @@ _data = {
 "new_animation": SubResource("Animation_cu48r")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_pcnwj"]
-vertices = PackedVector2Array(323, 111, 478, 100, 468, 240, 126, 224, 250, 111, 125, 100)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3), PackedInt32Array(5, 4, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(125, 100, 126, 224, 468, 240, 478, 100, 323, 111, 250, 111)])
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ti5l8"]
 size = Vector2(594.375, 144.875)
 
@@ -1894,7 +1888,7 @@ texture = ExtResource("21_qa4ap")
 [node name="Hotel-sign" type="Sprite2D" parent="Background"]
 position = Vector2(2918, -72)
 scale = Vector2(1, 0.970588)
-texture = ExtResource("22_l1sf8")
+texture = ExtResource("22_asjlr")
 region_enabled = true
 region_rect = Rect2(-0.218391, 0, 68.5112, 20.8637)
 
@@ -1926,7 +1920,7 @@ y_sort_enabled = true
 position = Vector2(277, 195)
 
 [node name="Car2" parent="Kinetic/Props" instance=ExtResource("12_p1d7v")]
-position = Vector2(3048, 239)
+position = Vector2(2167, 239)
 
 [node name="barrel1" parent="Kinetic/Props" instance=ExtResource("9_1c6i5")]
 position = Vector2(240, 102)
@@ -1948,6 +1942,18 @@ position = Vector2(2330, 89)
 [node name="barrel6" parent="Kinetic/Props" instance=ExtResource("15_py7da")]
 position = Vector2(2350, 96)
 
+[node name="barrel7" parent="Kinetic/Props" instance=ExtResource("9_1c6i5")]
+position = Vector2(3256, 231)
+collision_layer = 1
+
+[node name="barrel8" parent="Kinetic/Props" instance=ExtResource("9_1c6i5")]
+position = Vector2(3255, 160)
+collision_layer = 1
+
+[node name="barrel9" parent="Kinetic/Props" instance=ExtResource("9_1c6i5")]
+position = Vector2(3252, 102)
+collision_layer = 1
+
 [node name="Box" parent="Kinetic/Props" instance=ExtResource("16_7xmao")]
 position = Vector2(1674, 172)
 
@@ -1963,15 +1969,8 @@ position = Vector2(2709, 132)
 [node name="Box5" parent="Kinetic/Props" instance=ExtResource("16_7xmao")]
 position = Vector2(2869, 184)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Kinetic"]
-y_sort_enabled = true
-navigation_polygon = SubResource("NavigationPolygon_pcnwj")
-
 [node name="Enemies" type="Node2D" parent="Kinetic"]
 y_sort_enabled = true
-
-[node name="Boss" parent="Kinetic/Enemies" instance=ExtResource("33_qbb2a")]
-position = Vector2(184, 160)
 
 [node name="Nivel1" type="Area2D" parent="." groups=["Levels"]]
 y_sort_enabled = true
@@ -1985,20 +1984,20 @@ position = Vector2(776.625, 167.875)
 shape = SubResource("RectangleShape2D_ti5l8")
 
 [node name="Point1" type="Marker2D" parent="Nivel1"]
-position = Vector2(1105, 197)
+position = Vector2(1089, 221)
 
 [node name="Point2" type="Marker2D" parent="Nivel1"]
-position = Vector2(1081, 126)
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Nivel1"]
-position = Vector2(703, 126)
-navigation_polygon = SubResource("NavigationPolygon_32fjs")
+position = Vector2(1082, 107)
 
 [node name="Point3" type="Marker2D" parent="Nivel1"]
 position = Vector2(459, 105)
 
 [node name="Point4" type="Marker2D" parent="Nivel1"]
-position = Vector2(440, 202)
+position = Vector2(447, 213)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Nivel1"]
+position = Vector2(703, 126)
+navigation_polygon = SubResource("NavigationPolygon_32fjs")
 
 [node name="Nivel2" type="Area2D" parent="." groups=["Levels"]]
 position = Vector2(907, 0)
@@ -2015,7 +2014,10 @@ shape = SubResource("RectangleShape2D_ti5l8")
 position = Vector2(1020, 192)
 
 [node name="Point2" type="Marker2D" parent="Nivel2"]
-position = Vector2(1024, 124)
+position = Vector2(485, 105)
+
+[node name="Point3" type="Marker2D" parent="Nivel2"]
+position = Vector2(485, 105)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Nivel2"]
 navigation_polygon = SubResource("NavigationPolygon_umbki")
@@ -2092,7 +2094,7 @@ size_flags_vertical = 1
 theme = ExtResource("16_bcd7v")
 theme_override_styles/background = SubResource("StyleBoxFlat_tieay")
 theme_override_styles/fill = SubResource("StyleBoxFlat_w2hw2")
-max_value = 200.0
+max_value = 400.0
 value = 100.0
 show_percentage = false
 
@@ -2103,7 +2105,7 @@ size_flags_vertical = 1
 theme = ExtResource("16_bcd7v")
 theme_override_styles/background = SubResource("StyleBoxFlat_tieay")
 theme_override_styles/fill = SubResource("StyleBoxFlat_fslao")
-max_value = 200.0
+max_value = 400.0
 value = 100.0
 fill_mode = 1
 show_percentage = false
@@ -2122,13 +2124,13 @@ position = Vector2(1772.81, 168.438)
 shape = SubResource("RectangleShape2D_ti5l8")
 
 [node name="Point1" type="Marker2D" parent="Nivel3"]
-position = Vector2(1640, 94)
+position = Vector2(1642, 98)
 
 [node name="Point2" type="Marker2D" parent="Nivel3"]
-position = Vector2(1802, 96)
+position = Vector2(1802, 98)
 
 [node name="Point3" type="Marker2D" parent="Nivel3"]
-position = Vector2(1962, 95)
+position = Vector2(1962, 98)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Nivel3"]
 navigation_polygon = SubResource("NavigationPolygon_ospuj")

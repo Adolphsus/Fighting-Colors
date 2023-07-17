@@ -4,7 +4,7 @@ extends Camera2D
 
 const LEFT = 0
 const TOP = 0
-const RIGHT = 3300
+const RIGHT = 3916
 const BOTTOM = 250
 const ZOOM = Vector2(0.7, 0.6)
 

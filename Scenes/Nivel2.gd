@@ -5,6 +5,7 @@ var players = 0
 #spawn_points
 @onready var point_1 = $Point1
 @onready var point_2 = $Point2
+@onready var point_3 = $Point3
 
 @onready var enemy1 = preload("res://enemy1.tscn")
 @onready var enemy2 = preload("res://enemy_2.tscn")
@@ -56,12 +57,12 @@ func end(): #acá se pasa de un wave a otro
 		spawn(enemy1, point_1)
 		await get_tree().create_timer(0.5).timeout
 		spawn(enemy2, point_2)
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(4.0).timeout
 		spawn(enemy3, point_1)
 		await get_tree().create_timer(0.5).timeout
-		spawn(enemy3, point_2)
+		spawn(enemy3, point_3)
 		await get_tree().create_timer(0.5).timeout
-		spawn(enemy1, point_1)
+		spawn(enemy2, point_3)
 		print("wave: " + str(wave))
 	if contador == 5 and wave == 3:
 		Game.camera.limits(limitL, limitRfinal)
