@@ -49,7 +49,7 @@ var health = 1000:
 	get:
 		return health
 		
-const damage = 100
+const damage = 250
 
 #estados de la IA
 enum { SEEK,
@@ -292,9 +292,9 @@ func _physics_process(delta):
 			pivot.scale.x = 1
 			
 		if abs(target1.global_position - global_position) <= abs(target2.global_position - global_position):
-			update_target(set_target("player1"), movement_speed)
+			update_target(set_target("player1"), 30.0)
 		if abs(target2.global_position - global_position) < abs(target1.global_position - global_position):
-			update_target(set_target("player2"), movement_speed)
+			update_target(set_target("player2"), 30.0)
 	if state == IDLE:
 		playback.travel("idle")
 
