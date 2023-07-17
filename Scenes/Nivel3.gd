@@ -12,10 +12,14 @@ var players = 0
 @onready var enemy3 = preload("res://enemy_3.tscn")
 @onready var enemies = $"../Kinetic/Enemies"
 
+#stage
+@onready var stage = get_tree().get_nodes_in_group("Stages")
+@onready var current_stage = stage[0]
+
 var limitL = 2382
 var limitR = 2977
 var contador = 0
-var limitRfinal = 3250
+var limitRfinal = 3916
 @onready var wave = 0
 var cleared = false
 
@@ -68,6 +72,7 @@ func end(): #acá se pasa de un wave a otro
 		Game.camera.limits(limitL, limitRfinal)
 		cleared = true
 		remove_from_group("Levels")
+		current_stage.next()
 
 func spawn(en, point):
 	var spawn_point = Vector2(point.global_position)

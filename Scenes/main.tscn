@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bxbwvdv0lih6m"]
+[gd_scene load_steps=61 format=3 uid="uid://bxbwvdv0lih6m"]
 
 [ext_resource type="Texture2D" uid="uid://d1mxwowv8mle6" path="res://assets/Streets of Fight files/Stage Layers/back.png" id="1_5paak"]
 [ext_resource type="PackedScene" uid="uid://bktn544wckokf" path="res://Scenes/player.tscn" id="1_h2swh"]
@@ -18,13 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://drt8y6iwb7e2k" path="res://assets/props/banner-open.png" id="11_gv1au"]
 [ext_resource type="PackedScene" uid="uid://brv4ukegfxevw" path="res://car.tscn" id="12_p1d7v"]
 [ext_resource type="Texture2D" uid="uid://dmap8q5idetei" path="res://assets/props/banners.png" id="12_vmqyr"]
-[ext_resource type="PackedScene" uid="uid://cmwtc1tvnml87" path="res://character_body_2d_2.tscn" id="13_2ohri"]
+[ext_resource type="PackedScene" path="res://character_body_2d_2.tscn" id="13_2ohri"]
 [ext_resource type="Texture2D" uid="uid://b8rexr2nyllc7" path="res://assets/props/control-box-2.png" id="13_fm02h"]
 [ext_resource type="Texture2D" uid="uid://curoku82ujg6l" path="res://assets/Graffitis/1Band.png" id="14_q1w2v"]
 [ext_resource type="Script" path="res://Scenes/Area2D.gd" id="14_up86e"]
-[ext_resource type="PackedScene" uid="uid://lkx81on5k3rt" path="res://barrel_3.tscn" id="15_py7da"]
+[ext_resource type="PackedScene" path="res://barrel_3.tscn" id="15_py7da"]
 [ext_resource type="Texture2D" uid="uid://cp08xvrvy0lnk" path="res://assets/Graffitis/5Greenteam.png" id="15_yeqvi"]
-[ext_resource type="PackedScene" uid="uid://23n2nn8mbtx" path="res://box.tscn" id="16_7xmao"]
+[ext_resource type="PackedScene" path="res://box.tscn" id="16_7xmao"]
 [ext_resource type="Theme" uid="uid://ch881euxht8j4" path="res://resources/health_bar_theme.tres" id="16_bcd7v"]
 [ext_resource type="PackedScene" uid="uid://dl52j83dtimyr" path="res://resources/Pause.tscn" id="16_jd33o"]
 [ext_resource type="PackedScene" uid="uid://b8m2iyp80u64b" path="res://defeat_menu.tscn" id="19_n5jd1"]
@@ -36,6 +36,9 @@
 [ext_resource type="Texture2D" uid="uid://ch2yk2p7rpv43" path="res://assets/Graffitis/4Shortway.png" id="32_oir1u"]
 [ext_resource type="Texture2D" uid="uid://t3vr7r6qcj8g" path="res://assets/Graffitis/7Dangerarea.png" id="33_xcmdv"]
 [ext_resource type="Script" path="res://Scenes/Nivel3.gd" id="34_pos80"]
+[ext_resource type="Texture2D" uid="uid://cddyaoou8t6bc" path="res://assets/next.png" id="36_4emwn"]
+[ext_resource type="AudioStream" uid="uid://cuhuslw4g7ml0" path="res://assets/MP3/Next.wav" id="37_5w4m2"]
+[ext_resource type="Texture2D" uid="uid://bq28w75nfhrdl" path="res://assets/uwin.png" id="38_qkpw3"]
 [ext_resource type="AudioStream" uid="uid://cxd3awd7pubgp" path="res://assets/MP3/Hit_Hurt2.wav" id="40_7p4o6"]
 [ext_resource type="Script" path="res://Scenes/Nivel4.gd" id="40_mjm13"]
 [ext_resource type="AudioStream" uid="uid://t1fs10xl3ag" path="res://assets/MP3/Battle Encounter.ogg" id="41_1e4bp"]
@@ -1711,9 +1714,17 @@ border_width_bottom = 2
 border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ospuj"]
-vertices = PackedVector2Array(2070, 96, 2071, 240, 1476, 240, 1476, 97)
+vertices = PackedVector2Array(1476, 97, 2070, 96, 1847, 125, 1756, 125, 2014, 213, 2071, 240, 1476, 240, 1915, 212, 1685, 208, 1914, 175, 1592, 206, 2013, 176, 1846, 160, 1592, 177, 1684, 176, 1757, 160)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(7, 6, 8, 9), PackedInt32Array(10, 8, 6), PackedInt32Array(1, 5, 4, 11), PackedInt32Array(2, 1, 11, 9, 12), PackedInt32Array(10, 6, 0, 13), PackedInt32Array(14, 13, 0, 3, 15), PackedInt32Array(15, 12, 9, 8, 14)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1476, 97, 1476, 240, 2071, 240, 2070, 96), PackedVector2Array(1592, 206, 1592, 177, 1684, 176, 1685, 208), PackedVector2Array(1756, 125, 1757, 160, 1846, 160, 1847, 125), PackedVector2Array(1914, 175, 1915, 212, 2014, 213, 2013, 176)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_px070"]
+size = Vector2(594, 143)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dj1qn"]
+vertices = PackedVector2Array(2070, 97, 2070, 240, 1476, 240, 1476, 97)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1476, 97, 1476, 240, 2071, 240, 2070, 96)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1476, 97, 1476, 240, 2070, 240, 2070, 97)])
 
 [node name="main" type="Node2D" groups=["Stages"]]
 script = ExtResource("1_l0ll7")
@@ -2112,6 +2123,31 @@ show_percentage = false
 
 [node name="Defeat_menu" parent="CanvasLayer" instance=ExtResource("19_n5jd1")]
 
+[node name="Next" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = 203.0
+offset_top = 24.0
+offset_right = 279.0
+offset_bottom = 64.0
+scale = Vector2(0.68, 0.64)
+texture = ExtResource("36_4emwn")
+stretch_mode = 2
+
+[node name="Next_sound" type="AudioStreamPlayer" parent="CanvasLayer/Next"]
+stream = ExtResource("37_5w4m2")
+bus = &"Effects"
+
+[node name="Win" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = 88.0
+offset_top = 68.0
+offset_right = 161.0
+offset_bottom = 108.0
+texture = ExtResource("38_qkpw3")
+stretch_mode = 2
+
+[node name="Win_sound" type="AudioStreamPlayer" parent="CanvasLayer/Win"]
+
 [node name="Nivel3" type="Area2D" parent="." groups=["Levels"]]
 position = Vector2(907, 0)
 collision_layer = 0
@@ -2143,20 +2179,20 @@ monitorable = false
 script = ExtResource("40_mjm13")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Nivel4"]
-position = Vector2(1772.81, 168.438)
-shape = SubResource("RectangleShape2D_ti5l8")
+position = Vector2(1773, 168.5)
+shape = SubResource("RectangleShape2D_px070")
 
 [node name="Point1" type="Marker2D" parent="Nivel4"]
-position = Vector2(1640, 94)
+position = Vector2(1640, 106)
 
 [node name="Point2" type="Marker2D" parent="Nivel4"]
-position = Vector2(1802, 96)
+position = Vector2(1802, 108)
 
 [node name="Point3" type="Marker2D" parent="Nivel4"]
-position = Vector2(1962, 95)
+position = Vector2(1962, 107)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Nivel4"]
-navigation_polygon = SubResource("NavigationPolygon_ospuj")
+navigation_polygon = SubResource("NavigationPolygon_dj1qn")
 
 [node name="Hurt" type="AudioStreamPlayer" parent="."]
 process_mode = 3

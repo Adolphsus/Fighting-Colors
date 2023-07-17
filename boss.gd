@@ -58,7 +58,7 @@ DEATH,
 IDLE,
 STILL
 }
-var state = IDLE
+var state = SEEK
 
 func _ready():
 	progress_bar.value = Max_health
@@ -218,7 +218,7 @@ func tween_knockback(x):
 	tween.tween_property(character, "position", Vector2(position.x+x,position.y), 0.5).from_current()
 
 func delete():
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	visible = false
 	await get_tree().create_timer(0.1).timeout
 	visible = true

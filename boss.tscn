@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://kh8rtkqey48v"]
+[gd_scene load_steps=36 format=3 uid="uid://kh8rtkqey48v"]
 
 [ext_resource type="Texture2D" uid="uid://cfla4c5w38fam" path="res://assets/Streets of Fight files/Spritesheets/Boss/ogre.png" id="1_gxo1u"]
 [ext_resource type="Script" path="res://boss.gd" id="1_ixdal"]
@@ -345,8 +345,6 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a8ay4"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6x7j2"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_siub1"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m1h4t"]
@@ -376,7 +374,7 @@ states/idle/node = SubResource("AnimationNodeAnimation_iuusu")
 states/idle/position = Vector2(411, 100)
 states/walk/node = SubResource("AnimationNodeAnimation_5fmcx")
 states/walk/position = Vector2(600, 10)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_d0y8g"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_0spop"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_j8qos"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_a8ay4"), "walk", "hurt", SubResource("AnimationNodeStateMachineTransition_6x7j2"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_siub1"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_m1h4t"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_q4bxm"), "hurt", "death", SubResource("AnimationNodeStateMachineTransition_3ruye"), "attack", "death", SubResource("AnimationNodeStateMachineTransition_d6amg"), "death", "End", SubResource("AnimationNodeStateMachineTransition_wfefs"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_88xr6"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_kx2jf")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_d0y8g"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_0spop"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_j8qos"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_a8ay4"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_siub1"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_m1h4t"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_q4bxm"), "hurt", "death", SubResource("AnimationNodeStateMachineTransition_3ruye"), "attack", "death", SubResource("AnimationNodeStateMachineTransition_d6amg"), "death", "End", SubResource("AnimationNodeStateMachineTransition_wfefs"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_88xr6"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_kx2jf")]
 graph_offset = Vector2(156, -23.9846)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_0dh51"]
