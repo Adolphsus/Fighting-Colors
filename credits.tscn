@@ -1664,7 +1664,7 @@ theme_override_constants/margin_bottom = 6
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 6
+theme_override_constants/separation = 23
 
 [node name="Label" type="Label" parent="Menu/MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1675,7 +1675,7 @@ text = "Credits"
 layout_mode = 2
 text = "Low Three studio
 pixelart - ansimuz
-Music - ansimuz
+Musijc - ansimuz
 sounds - low three
 graffiti - craftpix.net"
 horizontal_alignment = 1
